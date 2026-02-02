@@ -278,17 +278,21 @@ async function renderBlog() {
             return;
         }
 
-        container.innerHTML = posts.map((p, i) => `
-            <div class="card" style="padding:0; overflow:hidden; cursor:pointer;" onclick="openBlogPost(${i})">
-                ${p.image ? `<div style="height:200px; background:url('${p.image}') center/cover;"></div>` : ''}
-                <div style="padding:25px;">
-                    <div style="color:var(--accent); font-size:0.8rem; font-weight:700; margin-bottom:10px;">${new Date(p.date).toLocaleDateString()}</div>
-                    <h3 style="margin-bottom:10px;">${p.title}</h3>
-                    <p style="color:var(--text-dim); font-size:0.95rem; line-height:1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${p.content}</p>
-                    <button class="chip" style="margin-top:20px; background:transparent; color:var(--accent); border-color:var(--accent);">Read More</button>
+        container.innerHTML = posts.map((p, i) => {
+            // Strip HTML/Markdown for preview
+            const previewText = p.content.replace(/<[^>]*>/g, '').substring(0, 150) + '...';
+            return `
+                <div class="card" style="padding:0; overflow:hidden; cursor:pointer;" onclick="openBlogPost(${i})">
+                    ${p.image ? `<div style="height:200px; background:url('${p.image}') center/cover;"></div>` : ''}
+                    <div style="padding:25px;">
+                        <div style="color:var(--accent); font-size:0.8rem; font-weight:700; margin-bottom:10px;">${new Date(p.date).toLocaleDateString()}</div>
+                        <h3 style="margin-bottom:10px;">${p.title}</h3>
+                        <p style="color:var(--text-dim); font-size:0.95rem; line-height:1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;">${previewText}</p>
+                        <button class="chip" style="margin-top:20px; background:transparent; color:var(--accent); border-color:var(--accent);">Read More</button>
+                    </div>
                 </div>
-            </div>
-        `).join('');
+            `;
+        }).join('');
 
     } catch (e) {
         // Fallback for static (if we had a static index, for now just show error or nothing)
@@ -321,11 +325,14 @@ window.openBlogPost = function(index) {
     showView('blog-post');
     
     const content = document.getElementById('blogPostContent');
+    // Render Markdown to HTML
+    const htmlContent = marked.parse(post.content);
+    
     content.innerHTML = `
         <h1 style="margin-bottom:10px; font-size: clamp(2rem, 5vw, 3rem);">${post.title}</h1>
         <div style="color:var(--accent); margin-bottom:30px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">${new Date(post.date).toLocaleDateString()}</div>
         ${post.image ? `<img src="${post.image}" style="width:100%; max-height:500px; object-fit:cover; margin-bottom:30px; border:2px solid var(--border);">` : ''}
-        <div style="line-height:1.8; color:var(--text-main); font-size: 1.1rem; white-space:pre-wrap;">${post.content}</div>
+        <div class="blog-content" style="line-height:1.8; color:var(--text-main); font-size: 1.1rem;">${htmlContent}</div>
     `;
 };
 
