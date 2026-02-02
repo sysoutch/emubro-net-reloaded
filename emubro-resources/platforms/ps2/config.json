@@ -1,0 +1,69 @@
+{  
+  "name":"Sony Playstation 2",
+  "shortName":"ps2",
+  "companyName":"Sony",
+  "iconFilename":"",
+  "defaultGameCover":"",
+  "recommendedEmulators":[
+	 "PCSX2"
+  ],
+  "plugins":[
+	{
+	  "covers":"",
+	  "titles":""
+	}
+  ],
+  "gameSearchModes":[  
+	 "FILE_FILE_NAME_MATCH",
+	 "IMAGE_FILE_NAME_MATCH"
+  ],
+  "searchFor":"",
+  "fileStructure":[  
+
+  ],
+  "supportedArchiveTypes":[  
+
+  ],
+  "supportedImageTypes":[  
+	 ".iso",
+	 ".bin",
+	 ".cue",
+	 ".img",
+	 ".mdf",
+	 ".nrg"
+  ],
+  "emulators":[  
+	 {  
+		"name":"PCSX2",
+		"os":[
+
+		],
+		"path":"",
+		"iconFilename":"pcsx2.png",
+		"configFilePath":"",
+		"website":"https://pcsx2.net/downloads",
+		"startParameters":"%emupath% %gamepath%",
+		"supportedFileTypes":[  
+		   ".iso",
+		   ".bin",
+		   ".img",
+		   ".mdf",
+		   ".nrg"
+		],
+		"searchString":"^(pcsx2-r\\d+)\\.exe$|^(pcsx2)\\.exe$",
+		"archiveFileMatchWin":"^(pcsx2-(.*)-win_x64)\\.zip$",
+		"archiveFileMatchLinux":"^(pcsx2-(.*)-linux_x64)\\.tar$",
+		"archiveFileMatchMac":"^(pcsx2-(.*)-osx_x64)\\.zip$",
+		"setupFileMatchWin":"",
+		"setupFileMatchLinux":"",
+		"setupFileMatchMac":"",
+		"autoSearchEnabled":true,
+		"biosRequired":true,
+		"runCommandsBefore":[
+		 
+		]
+	 }
+  ],
+  "directExecutionMode":"none",
+  "autoSearchEnabled":true
+}

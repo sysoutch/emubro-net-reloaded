@@ -1,0 +1,56 @@
+/* --- 4. FIXED HEADER STACK --- */
+.ticker {
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--accent);
+    color: var(--accent);
+    height: var(--ticker-height);
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    position: fixed;
+    top: 0; width: 100%; z-index: 1100;
+    overflow: hidden;
+}
+.ticker-content { display: inline-block; white-space: nowrap; animation: ticker 40s linear infinite; }
+@keyframes ticker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+.navbar {
+    height: var(--nav-height);
+    position: fixed;
+    top: var(--ticker-height);
+    width: 100%;
+    z-index: 1000;
+    background: transparent;
+    backdrop-filter: blur(25px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+}
+.navbar .container { display: flex; justify-content: space-between; align-items: center; }
+
+.logo { font-weight: 400; font-size: 2rem; color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 8px; cursor: pointer; letter-spacing: 2px; }
+.logo span { background: var(--accent); color: var(--bg) !important; padding: 0px 8px; border-radius: 0; }
+
+.nav-menu { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+.nav-menu::-webkit-scrollbar { display: none; }
+
+/* --- 6. VIEWS & HERO --- */
+.view { 
+    display: none; 
+    padding-top: calc(var(--nav-height) + var(--ticker-height) + 60px); 
+    animation: fadeIn 0.4s ease;
+    flex: 1; /* Allows content to push footer */
+}
+.view.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.hero { text-align: center; max-width: 900px; margin: 0 auto; padding-bottom: 60px; }
+
+/* --- 8. FOOTER --- */
+footer { border-top: 1px solid var(--border); padding: 80px 0 40px; margin-top: 100px; background: rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+.footer-links h4 { color: white; margin-bottom: 1.5rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
+.footer-links a { display: block; color: var(--text-dim); text-decoration: none; margin-bottom: 10px; font-size: 0.95rem; transition: 0.2s; }
+.footer-links a:hover { color: var(--accent); }

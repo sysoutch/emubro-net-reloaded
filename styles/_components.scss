@@ -1,0 +1,71 @@
+/* --- 5. UI ELEMENTS --- */
+.chip { padding: 8px 16px; background: var(--card-bg); border: 2px solid var(--border); border-radius: 0; color: var(--text-dim); cursor: pointer; white-space: nowrap; transition: 0.1s; font-size: 1.1rem; font-weight: 400; text-transform: uppercase; }
+.chip.active, .chip:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); box-shadow: 4px 4px 0px rgba(0,0,0,0.5); transform: translate(-2px, -2px); }
+
+.theme-select {
+    padding: 8px 16px;
+    background: var(--card-bg);
+    border: 2px solid var(--border);
+    border-radius: 0;
+    color: var(--text-dim);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 35px;
+    transition: 0.1s;
+}
+.theme-select:hover, .theme-select:focus {
+    border-color: var(--accent);
+    color: var(--text-main);
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.5); 
+    transform: translate(-2px, -2px);
+}
+
+.btn-primary { 
+    background: var(--accent); color: var(--bg); padding: 15px 30px; border-radius: 0; 
+    font-weight: 400; cursor: pointer; border: none; transition: 0.1s;
+    text-transform: uppercase; font-size: 1.3rem;
+    box-shadow: 6px 6px 0px rgba(0,0,0,0.5);
+    border: 2px solid var(--accent);
+}
+.btn-primary:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0px rgba(0,0,0,0.5); background: #fff; color: var(--bg); }
+
+.badge { display: inline-block; padding: 5px 10px; background: transparent; color: var(--accent); border-radius: 0; font-size: 1rem; font-weight: 400; text-transform: uppercase; margin-bottom: 2rem; border: 2px solid var(--accent); box-shadow: 4px 4px 0 rgba(0,0,0,0.5); }
+
+h1 { 
+    font-size: clamp(3.5rem, 10vw, 6rem); 
+    font-weight: 400; 
+    line-height: 0.95; 
+    letter-spacing: 0px; 
+    margin-bottom: 2rem; 
+    text-transform: uppercase;
+    text-shadow: 4px 4px 0px #000;
+}
+.gradient-text { background: none; -webkit-text-fill-color: var(--accent); color: var(--accent); text-shadow: 2px 2px 0px var(--bg); }
+
+.hero p { font-size: 1.3rem; color: var(--text-dim); max-width: 700px; margin: 0 auto 3rem; line-height: 1.4; }
+
+/* Grids & Cards */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.card { background: var(--card-bg); padding: 2rem; border-radius: 0; border: 2px solid var(--border); backdrop-filter: none; transition: 0.3s; box-shadow: 6px 6px 0px rgba(0,0,0,0.3); }
+.card:hover { border-color: var(--accent); transform: translate(-2px, -2px); box-shadow: 8px 8px 0px rgba(0,0,0,0.3); }
+
+/* Netflix Carousel */
+.carousel { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 30px; scrollbar-width: none; }
+.poster { min-width: 220px; aspect-ratio: 2/3; background: var(--card-bg); border-radius: 0; border: 2px solid var(--border); transition: 0.3s; position: relative; overflow: hidden; }
+.poster:hover { transform: scale(1.05); border-color: var(--accent); z-index: 10; }
+.poster-title { position: absolute; bottom: 0; width: 100%; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); font-weight: 800; font-size: 0.9rem; color: white; }
+
+/* --- 7. SEARCH MODAL --- */
+#searchModal { display: none; position: fixed; inset: 0; background: rgba(2, 6, 23, 0.92); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(15px); }
+#searchModal.active { display: flex; }
+.modal-box { width: 90%; max-width: 650px; background: var(--bg); padding: 40px; border-radius: 0; border: 2px solid var(--accent); box-shadow: 10px 10px 0px rgba(0,0,0,0.5); }
+#modalInput { width: 100%; background: transparent; border: none; border-bottom: 4px solid var(--accent); font-size: 2.5rem; color: var(--accent); outline: none; padding: 10px 0; font-weight: 400; font-family: 'VT323', monospace; }

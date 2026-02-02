@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>emuBro Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.21.2/css/grapes.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/grapesjs/0.21.2/grapes.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/turndown@7.1.1/dist/turndown.js"></script>
+    <style>
+        body { padding-top: 20px; }
+        .editor-container { max-width: 800px; margin: 0 auto; background: var(--card-bg); padding: 30px; border-radius: 0; border: 2px solid var(--border); box-shadow: 6px 6px 0px rgba(0,0,0,0.3); }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--text-dim); }
+        input[type="text"], input[type="password"], textarea { width: 100%; padding: 12px; border-radius: 0; border: 2px solid var(--border); background: rgba(0,0,0,0.2); color: var(--text-main); font-family: inherit; }
+        textarea { min-height: 200px; resize: vertical; }
+        .preview-img { max-width: 100%; max-height: 200px; margin-top: 10px; border-radius: 0; display: none; border: 2px solid var(--border); }
+        
+        /* Modal */
+        .login-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; display: flex; align-items: center; justify-content: center; }
+        .login-box { background: var(--card-bg); padding: 40px; border: 2px solid var(--accent); width: 100%; max-width: 400px; }
+        
+        /* Tabs */
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tab-btn { background: var(--card-bg); border: 2px solid var(--border); padding: 10px 20px; color: var(--text-dim); cursor: pointer; font-family: inherit; font-size: 1.2rem; }
+        .tab-btn.active { border-color: var(--accent); color: var(--accent); background: rgba(0,0,0,0.2); }
+
+        /* Toolbar active state */
+        #toolbar .chip.active { border-color: var(--accent); color: var(--accent); background: rgba(0, 255, 157, 0.1); }
+        
+        .admin-view { display: none; }
+        .admin-view.active { display: block; }
+
+        .editor-sub-view { display: none; }
+        .editor-sub-view.active { display: block; }
+        
+        .color-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+        input[type="color"] { width: 100%; height: 40px; border: none; background: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <!-- Login Modal -->
+    <div id="loginModal" class="login-modal" style="display: none;">
+        <div class="login-box">
+            <h2 style="text-align: center; margin-bottom: 20px;">Admin Login</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" required>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%;">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container" id="contentArea">
+        <header style="margin-bottom: 40px; text-align: center;">
+            <div class="logo"><span><img src="logo.png" /></span> Admin Panel</div>
+            <a href="/" style="color:var(--accent); text-decoration:none;">← Back to Website</a>
+        </header>
+
+        <div class="editor-container">
+            <div class="tabs">
+                <button class="tab-btn active" data-view="postsView">Blog Posts</button>
+                <button class="tab-btn" data-view="themeView">Theme Editor</button>
+                <button class="tab-btn" data-view="usersView">Users</button>
+                <button class="tab-btn" data-view="pagesView">Page Editor</button>
+            </div>
+
+            <!-- Posts View -->
+            <div id="postsView" class="admin-view active">
+                <h2>Write New Post</h2>
+                <form id="postForm">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="title" required placeholder="Enter post title...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Cover Image</label>
+                        <input type="file" id="imageInput" accept="image/*">
+                        <input type="hidden" id="imageUrl">
+                        <img id="imagePreview" class="preview-img">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Content</label>
+                        <div class="tabs" style="margin-bottom: 5px;">
+                            <button type="button" class="tab-btn" data-editor-view="visualView" style="font-size: 0.9rem; padding: 5px 10px;">Visual</button>
+                            <button type="button" class="tab-btn active" data-editor-view="markdownView" style="font-size: 0.9rem; padding: 5px 10px;">Markdown</button>
+                            <button type="button" class="tab-btn" data-editor-view="codeView" style="font-size: 0.9rem; padding: 5px 10px;">Code</button>
+                        </div>
+                        
+                        <div id="visualView" class="editor-sub-view" style="min-height: 200px; border: 2px solid var(--border); padding: 12px; background: rgba(0,0,0,0.1); overflow-y: auto;">
+                            <div id="toolbar" style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; gap: 3px; flex-wrap: wrap; align-items: center;">
+                                <style>#toolbar .chip { padding: 4px 8px; font-size: 0.8rem; min-width: 30px; text-align: center; }</style>
+                                <button type="button" class="chip" data-cmd="bold" onclick="execCmd('bold')" title="Bold">B</button>
+                                <button type="button" class="chip" data-cmd="italic" onclick="execCmd('italic')" title="Italic">I</button>
+                                <button type="button" class="chip" data-cmd="underline" onclick="execCmd('underline')" title="Underline">U</button>
+                                <button type="button" class="chip" data-cmd="strikeThrough" onclick="execCmd('strikeThrough')" title="Strikethrough">S</button>
+                                <select id="formatBlockSelect" onchange="execCmd('formatBlock', this.value);" class="chip" style="background: var(--card-bg); color: var(--text-main); border: 1px solid var(--border); width: auto;">
+                                    <option value="P">Text</option>
+                                    <option value="H1">H1</option>
+                                    <option value="H2">H2</option>
+                                    <option value="H3">H3</option>
+                                    <option value="P">P</option>
+                                    <option value="BLOCKQUOTE">“”</option>
+                                    <option value="PRE">{}</option>
+                                </select>
+                                <button type="button" class="chip" data-cmd="insertUnorderedList" onclick="execCmd('insertUnorderedList')" title="Bullet List">•</button>
+                                <button type="button" class="chip" data-cmd="insertOrderedList" onclick="execCmd('insertOrderedList')" title="Numbered List">1.</button>
+                                <button type="button" class="chip" data-cmd="justifyLeft" onclick="execCmd('justifyLeft')" title="Align Left">⬅</button>
+                                <button type="button" class="chip" data-cmd="justifyCenter" onclick="execCmd('justifyCenter')" title="Align Center">⬛</button>
+                                <button type="button" class="chip" onclick="execCmd('createLink', prompt('Enter URL:'))" title="Link">🔗</button>
+                                <button type="button" class="chip" onclick="execCmd('insertImage', prompt('Enter Image URL:'))" title="Image">🖼️</button>
+                                <button type="button" class="chip" onclick="insertVideo()" title="Video">📹</button>
+                                <button type="button" class="chip" onclick="insertMap()" title="Map">📍</button>
+                                <button type="button" class="chip" onclick="execCmd('insertHorizontalRule')" title="Horizontal Line">―</button>
+                                <button type="button" class="chip" onclick="execCmd('removeFormat')" title="Clear Formatting">⌫</button>
+                            </div>
+                            <div id="visualEditor" contenteditable="true" style="min-height: 150px; outline: none; color: var(--text-main);"></div>
+                        </div>
+                        
+                        <div id="markdownView" class="editor-sub-view active">
+                            <textarea id="content" required placeholder="Write your thoughts..."></textarea>
+                        </div>
+
+                        <div id="codeView" class="editor-sub-view">
+                            <textarea id="codeContent" readonly style="background: #1e1e1e; color: #d4d4d4; font-family: monospace;"></textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%;">Publish Post</button>
+                </form>
+                
+                <div class="post-list card" style="margin-top: 40px;">
+                    <h3>Recent Posts</h3>
+                    <div id="postsContainer">Loading...</div>
+                </div>
+            </div>
+
+            <!-- Theme View -->
+            <div id="themeView" class="admin-view">
+                <h2>Create Custom Theme</h2>
+                <form id="themeForm">
+                    <div class="form-group">
+                        <label>Theme Name</label>
+                        <input type="text" id="themeName" required placeholder="e.g. neon-night">
+                    </div>
+                    
+                    <div class="color-grid">
+                        <div class="form-group">
+                            <label>Background (--bg)</label>
+                            <input type="color" class="color-input" name="--bg" value="#0f172a">
+                        </div>
+                        <div class="form-group">
+                            <label>Card BG (--card-bg)</label>
+                            <input type="color" class="color-input" name="--card-bg" value="#274056">
+                        </div>
+                        <div class="form-group">
+                            <label>Accent (--accent)</label>
+                            <input type="color" class="color-input" name="--accent" value="#00ff9d">
+                        </div>
+                        <div class="form-group">
+                            <label>Text Main (--text-main)</label>
+                            <input type="color" class="color-input" name="--text-main" value="#e2e8f0">
+                        </div>
+                        <div class="form-group">
+                            <label>Text Dim (--text-dim)</label>
+                            <input type="color" class="color-input" name="--text-dim" value="#94a3b8">
+                        </div>
+                         <div class="form-group">
+                            <label>Border (--border)</label>
+                            <input type="color" class="color-input" name="--border" value="#475569">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Accent Glow (RGBA/Hex)</label>
+                        <input type="text" class="color-input" name="--accent-glow" value="rgba(0, 255, 157, 0.4)" placeholder="rgba(...) or hex">
+                    </div>
+
+                    <button type="submit" class="btn-primary" style="width: 100%;">Save Theme & Recompile</button>
+                </form>
+            </div>
+
+            <!-- Users View -->
+            <div id="usersView" class="admin-view">
+                <h2>User Management</h2>
+                <div id="userList" class="card" style="margin-bottom: 30px;">Loading...</div>
+                
+                <h3>Add User</h3>
+                <form id="addUserForm" style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px;">
+                    <input type="text" id="newUsername" placeholder="Username" required>
+                    <input type="password" id="newPassword" placeholder="Password" required>
+                    <select id="newRole" style="padding: 12px; border-radius: 0; border: 2px solid var(--border); background: rgba(0,0,0,0.2); color: var(--text-main);">
+                        <option value="user">User</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                    <button type="submit" class="btn-primary">Add User</button>
+                </form>
+            </div>
+
+            <!-- Page Editor View -->
+            <div id="pagesView" class="admin-view">
+                <h2>Page Editor</h2>
+                <div style="display:flex; gap:10px; margin-bottom:10px; align-items:center;">
+                    <select id="pageSelect" style="flex:1; padding: 10px; border: 2px solid var(--border); background: rgba(0,0,0,0.2); color: var(--text-main);"><option value="">Select Page to Edit...</option></select>
+                    <button id="newPageBtn" class="chip">New Page</button>
+                    <button id="savePageBtn" class="btn-primary">Save Page</button>
+                    <button id="deletePageBtn" class="chip" style="color:red; border-color:red;">Delete</button>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="pageTitle" placeholder="Page Title" style="margin-bottom: 5px;">
+                    <input type="text" id="pageSlug" placeholder="URL Slug (e.g. about-us)" style="margin-bottom: 10px;">
+                </div>
+                <div id="gjs" style="height:600px; border:2px solid var(--border); color: #000;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

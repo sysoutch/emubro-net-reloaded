@@ -1,0 +1,14 @@
+[
+  {
+    "name": "neon-night",
+    "colors": {
+      "--bg": "#0f172a",
+      "--card-bg": "#274056",
+      "--accent": "#065bf9",
+      "--text-main": "#e2e8f0",
+      "--text-dim": "#94a3b8",
+      "--border": "#475569",
+      "--accent-glow": "rgba(0, 255, 157, 0.4)"
+    }
+  }
+]

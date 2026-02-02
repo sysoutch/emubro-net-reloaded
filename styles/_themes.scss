@@ -1,0 +1,86 @@
+[data-theme="light"] {
+    --bg: #f8fafc;
+    --card-bg: rgba(255, 255, 255, 0.8);
+    --accent: #7c3aed;
+    --accent-glow: rgba(124, 58, 237, 0.15);
+    --text-main: #0f172a;
+    --text-dim: #475569;
+    --border: rgba(0, 0, 0, 0.08);
+}
+
+/* Mario Colors Pixel */
+[data-theme="mario"] {
+    --bg: #202020;
+    --card-bg: rgba(0, 0, 0, 0.9);
+    --accent: #E60012; /* Mario Red */
+    --accent-glow: rgba(230, 0, 18, 0.4);
+    --text-main: #ffffff;
+    --text-dim: #dddddd;
+    --border: #FFD700; /* Coin Gold */
+}
+
+/* CRT Greenish Gameboy */
+[data-theme="gb-green"] {
+    --bg: #0f380f;
+    --card-bg: rgba(48, 98, 48, 0.9);
+    --accent: #9bbc0f; /* Lightest Green */
+    --accent-glow: rgba(139, 172, 15, 0.4);
+    --text-main: #9bbc0f;
+    --text-dim: #8bac0f;
+    --border: #306230;
+}
+
+/* Blueish Gameboy */
+[data-theme="gb-blue"] {
+    --bg: #002b59;
+    --card-bg: rgba(0, 64, 128, 0.8);
+    --accent: #00aaff;
+    --accent-glow: rgba(0, 170, 255, 0.4);
+    --text-main: #e0f0ff;
+    --text-dim: #80aaff;
+    --border: #005580;
+}
+
+/* Modern (Sleek Dark) */
+[data-theme="modern-dark"] {
+    --bg: #09090b;
+    --card-bg: rgba(24, 24, 27, 0.9);
+    --accent: #3b82f6;
+    --accent-glow: rgba(59, 130, 246, 0.3);
+    --text-main: #fafafa;
+    --text-dim: #a1a1aa;
+    --border: #27272a;
+}
+[data-theme="modern-dark"] body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    letter-spacing: normal;
+}
+[data-theme="modern-dark"] h1, [data-theme="modern-dark"] h2, [data-theme="modern-dark"] h3 {
+    text-transform: none;
+    letter-spacing: -0.025em;
+}
+[data-theme="modern-dark"] .logo {
+    font-family: 'VT323', monospace; /* Keep logo retro */
+}
+
+/* Modern (Sleek Light) */
+[data-theme="modern-light"] {
+    --bg: #cbcbf5;
+    --card-bg: rgba(203, 203, 231, 0.9);
+    --accent: #3b82f6;
+    --accent-glow: rgba(19, 40, 75, 0.3);
+    --text-main: #f8f7f700;
+    --text-dim: #414146;
+    --border: #d1d1e4;
+}
+[data-theme="modern-dark"] body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    letter-spacing: normal;
+}
+[data-theme="modern-dark"] h1, [data-theme="modern-dark"] h2, [data-theme="modern-dark"] h3 {
+    text-transform: none;
+    letter-spacing: -0.025em;
+}
+[data-theme="modern-dark"] .logo {
+    font-family: 'VT323', monospace; /* Keep logo retro */
+}

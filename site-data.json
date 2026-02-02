@@ -1,0 +1,1956 @@
+{
+  "platforms": [
+    {
+      "id": "3ds",
+      "name": "Nintendo 3DS",
+      "company": "Nintendo",
+      "shortName": "3ds",
+      "icon": "",
+      "config": {
+        "name": "Nintendo 3DS",
+        "shortName": "3ds",
+        "companyName": "Nintendo",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "citra"
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "ARCHIVE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "^(.+)\\.3ds$|^(.+)\\.3dsx$",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [],
+        "emulators": [
+          {
+            "name": "citra",
+            "os": [],
+            "path": "",
+            "iconFilename": "citra.png",
+            "configFilePath": "",
+            "website": "https://citra-emu.org/download/",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [
+              ".3ds",
+              ".3dsx"
+            ],
+            "searchString": "^(citra-qt)\\.exe$",
+            "archiveFileMatchWin": "^(citra-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(citra-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(citra-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "amiga",
+      "name": "Amiga",
+      "company": "Unknown",
+      "shortName": "amiga",
+      "icon": "",
+      "config": {
+        "name": "Amiga",
+        "shortName": "amiga",
+        "companyName": "",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "WinFellow"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "ARCHIVE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [],
+        "emulators": [
+          {
+            "name": "WinFellow",
+            "os": [],
+            "path": "",
+            "iconFilename": "winfellow.png",
+            "configFilePath": "",
+            "website": "https://github.com/petschau/WinFellow/releases",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(winfellow)\\.exe$",
+            "archiveFileMatchWin": "^(WinFellow_(.*)-master-(.*))\\.zip$",
+            "archiveFileMatchLinux": "^(WinFellow_(.*)-master-(.*))\\.tar$",
+            "archiveFileMatchMac": "^(WinFellow_(.*)-master-(.*))\\.zip$",
+            "setupFileMatchWin": "^(WinFellow_(.*)-master-(.*))\\.exe$",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "android",
+      "name": "Android",
+      "company": "Android",
+      "shortName": "android",
+      "icon": "",
+      "config": {
+        "name": "Android",
+        "shortName": "android",
+        "companyName": "Android",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "BlueStacks"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "^(.+)\\.apk$",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [],
+        "emulators": [
+          {
+            "name": "Andy",
+            "os": [],
+            "path": "",
+            "iconFilename": "andy.png",
+            "configFilePath": "",
+            "website": "http://www.andyroid.net/",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [
+              ".apk"
+            ],
+            "searchString": "^(andy)\\.exe$",
+            "archiveFileMatchWin": "^(andy-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(andy-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(andy-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "atari-st",
+      "name": "Atari ST",
+      "company": "Atari",
+      "shortName": "atari-st",
+      "icon": "",
+      "config": {
+        "name": "Atari ST",
+        "shortName": "atari-st",
+        "companyName": "Atari",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "Steem"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "ARCHIVE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [],
+        "emulators": [
+          {
+            "name": "Steem",
+            "os": [],
+            "path": "",
+            "iconFilename": "steem.png",
+            "configFilePath": "steem.ini",
+            "website": "http://steem.atari.st/download.htm",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(steem)\\.exe$|^(steem.*\\+)\\.exe$",
+            "archiveFileMatchWin": "^(steem-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(steem-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(steem-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "atari2600",
+      "name": "Atari 2600",
+      "company": "Atari",
+      "shortName": "atari2600",
+      "icon": "",
+      "config": {
+        "name": "Atari 2600",
+        "shortName": "atari2600",
+        "companyName": "Atari",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "ARCHIVE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [],
+        "emulators": [
+          {
+            "name": "Stella",
+            "os": [],
+            "path": "",
+            "iconFilename": "stella.png",
+            "configFilePath": "",
+            "website": "https://stella-emu.github.io/downloads.html",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(stella)\\.exe$",
+            "archiveFileMatchWin": "^(stella-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(stella-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(stella-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          },
+          {
+            "name": "Pcaewin",
+            "os": [],
+            "path": "",
+            "iconFilename": "pcaewin.png",
+            "configFilePath": "",
+            "website": "http://pcae.vg-network.com/main.html#Downloads",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(pcaewin)\\.exe$",
+            "archiveFileMatchWin": "^(pcaewin-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(pcaewin-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(pcaewin-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          },
+          {
+            "name": "z26",
+            "os": [],
+            "path": "",
+            "iconFilename": "z26.png",
+            "configFilePath": "",
+            "website": "http://www.whimsey.com/z26/",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(z26)\\.exe$",
+            "archiveFileMatchWin": "^(z26-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(z26-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(z26-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "atari5200",
+      "name": "Atari 5200",
+      "company": "Atari",
+      "shortName": "atari5200",
+      "icon": "",
+      "config": {
+        "name": "Atari 5200",
+        "shortName": "atari5200",
+        "companyName": "Atari",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "ARCHIVE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [],
+        "emulators": [
+          {
+            "name": "Atari++",
+            "os": [],
+            "path": "",
+            "iconFilename": "atariplusplus.png",
+            "configFilePath": "",
+            "website": "http://www.xl-project.com/downloads.html",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(atari\\+\\+)\\.exe$",
+            "archiveFileMatchWin": "^(atari\\+\\+_win_(.*))\\.zip$",
+            "archiveFileMatchLinux": "",
+            "archiveFileMatchMac": "",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          },
+          {
+            "name": "Atari800",
+            "os": [],
+            "path": "",
+            "iconFilename": "atari800.png",
+            "configFilePath": "",
+            "website": "https://atari800.github.io/download.html",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(atari800)\\.exe$",
+            "archiveFileMatchWin": "^(atari800-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(atari800-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(atari800-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          },
+          {
+            "name": "kat5200",
+            "os": [],
+            "path": "",
+            "iconFilename": "kat5200.png",
+            "configFilePath": "",
+            "website": "http://kat5200.jillybunch.com/downloads.html",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(kat5200)\\.exe$",
+            "archiveFileMatchWin": "^(kat5200-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(kat5200-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(kat5200-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          },
+          {
+            "name": "MESS",
+            "os": [],
+            "path": "",
+            "iconFilename": "atariplusplus.png",
+            "configFilePath": "",
+            "website": "http://www.mamedev.org/release.html",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(mess)\\.exe$",
+            "archiveFileMatchWin": "^(mess-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(mess-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(mess-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          },
+          {
+            "name": "VSS",
+            "os": [],
+            "path": "",
+            "iconFilename": "vss.png",
+            "configFilePath": "",
+            "website": "http://atarihq.com/danb/a5200.shtml",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(vss)\\.exe$",
+            "archiveFileMatchWin": "^(vss-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(vss-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(vss-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "atari7800",
+      "name": "Atari 7800",
+      "company": "Atari",
+      "shortName": "atari7800",
+      "icon": "",
+      "config": {
+        "name": "Atari 7800",
+        "shortName": "atari7800",
+        "companyName": "Atari",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "MESS"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "ARCHIVE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [],
+        "emulators": [
+          {
+            "name": "MESS",
+            "os": [],
+            "path": "",
+            "iconFilename": "atariplusplus.png",
+            "configFilePath": "",
+            "website": "http://www.mamedev.org/release.html",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(mess)\\.exe$",
+            "archiveFileMatchWin": "^(mess-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(mess-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(mess-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "dreamcast",
+      "name": "Sega Dreamcast",
+      "company": "Unknown",
+      "shortName": "dreamcast",
+      "icon": "",
+      "config": {
+        "name": "Sega Dreamcast",
+        "shortName": "dreamcast",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "redream"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "IMAGE_FILE_CONTENT_MATCH"
+        ],
+        "searchFor": "^(.*)\\.elf$",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [
+          ".bin"
+        ],
+        "emulators": [
+          {
+            "name": "nullDC",
+            "os": [],
+            "path": "",
+            "iconFilename": "nulldc.jpg",
+            "configFilePath": "nulldc.cfg",
+            "website": "https://code.google.com/archive/p/nulldc/downloads",
+            "startParameters": "%emupath% -loadbin %gamepath%",
+            "supportedFileTypes": [
+              ".bin",
+              ".elf"
+            ],
+            "searchString": "^(nulldc.*)\\.exe$",
+            "archiveFileMatchWin": "^(nulldc-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(nulldc-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(nulldc-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "gameboy",
+      "name": "Game Boy",
+      "company": "Nintendo",
+      "shortName": "gameboy",
+      "icon": "",
+      "config": {
+        "name": "Game Boy",
+        "shortName": "gameboy",
+        "companyName": "Nintendo",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "VisualBoyAdvance"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "ARCHIVE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "^(.+)\\.gb$",
+        "fileStructure": [],
+        "supportedArchiveTypes": [
+          ".zip"
+        ],
+        "supportedImageTypes": [
+          ""
+        ],
+        "emulators": [
+          {
+            "name": "VisualBoyAdvance",
+            "os": [],
+            "path": "",
+            "iconFilename": "visualboyadvance.png",
+            "configFilePath": "vba.ini",
+            "website": "http://www.emulator-zone.com/doc.php/gba/vboyadvance.HTML",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [
+              ".zip"
+            ],
+            "searchString": "^(visualboyadvance)\\.exe$",
+            "archiveFileMatchWin": "^(visualboyadvance-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(visualboyadvance-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(visualboyadvance-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "gba",
+      "name": "Game Boy Advance",
+      "company": "Nintendo",
+      "shortName": "gba",
+      "icon": "",
+      "config": {
+        "name": "Game Boy Advance",
+        "shortName": "gba",
+        "companyName": "Nintendo",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "VisualBoyAdvance"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "ARCHIVE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "^(.+)\\.gba$",
+        "fileStructure": [],
+        "supportedArchiveTypes": [
+          ".zip"
+        ],
+        "supportedImageTypes": [
+          ""
+        ],
+        "emulators": [
+          {
+            "name": "VisualBoyAdvance",
+            "os": [],
+            "path": "",
+            "iconFilename": "visualboyadvance.png",
+            "configFilePath": "vba.ini",
+            "website": "http://www.emulator-zone.com/doc.php/gba/vboyadvance.HTML",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [
+              ".zip"
+            ],
+            "searchString": "^(visualboyadvance)\\.exe$",
+            "archiveFileMatchWin": "^(visualboyadvance-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(visualboyadvance-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(visualboyadvance-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "gcn",
+      "name": "Nintendo GameCube",
+      "company": "Nintendo",
+      "shortName": "gcn",
+      "icon": "",
+      "config": {
+        "name": "Nintendo GameCube",
+        "shortName": "gcn",
+        "companyName": "Nintendo",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "Dolphin"
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "IMAGE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "^(.+)\\.gcm$|^(.+)\\.gcs$",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [
+          ".iso",
+          ".ciso"
+        ],
+        "emulators": [
+          {
+            "name": "Dolphin",
+            "os": [],
+            "path": "",
+            "iconFilename": "dolphin.png",
+            "configFilePath": "",
+            "website": "https://dolphin-emu.org/download/",
+            "startParameters": "%emupath% /e %gamepath%",
+            "supportedFileTypes": [
+              "^\\.gcm$",
+              "^\\.gcz$"
+            ],
+            "searchString": "^(dolphin)\\.exe$",
+            "archiveFileMatchWin": "^(dolphin-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(dolphin-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(dolphin-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          },
+          {
+            "name": "Dolphin VR",
+            "os": [],
+            "path": "",
+            "iconFilename": "dolphin.png",
+            "configFilePath": "",
+            "website": "https://dolphinvr.wordpress.com/downloads/",
+            "startParameters": "%emupath% /e %gamepath%",
+            "supportedFileTypes": [
+              "^\\.gcm$",
+              "^\\.gcz$"
+            ],
+            "searchString": "^(dolphin)\\.exe$",
+            "archiveFileMatchWin": "^(dolphin-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(dolphin-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(dolphin-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "n64",
+      "name": "Nintendo 64",
+      "company": "Nintendo",
+      "shortName": "n64",
+      "icon": "",
+      "config": {
+        "name": "Nintendo 64",
+        "shortName": "n64",
+        "companyName": "Nintendo",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "Project64"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "ARCHIVE_FILE_NAME_MATCH",
+          "IMAGE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "^(.*)\\.z64$|^(.*)\\.v64$|^(.*)\\.n64$",
+        "fileStructure": [],
+        "supportedArchiveTypes": [
+          ".zip"
+        ],
+        "supportedImageTypes": [
+          ".bin"
+        ],
+        "emulators": [
+          {
+            "name": "Project64",
+            "os": [],
+            "path": "",
+            "iconFilename": "project64.png",
+            "configFilePath": "/config/project64.cfg",
+            "website": "https://www.pj64-emu.com/nightly-builds",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [
+              ".bin",
+              ".zip",
+              ".z64",
+              ".v64",
+              ".n64",
+              ".rom",
+              ".usa",
+              ".jap",
+              ".pal"
+            ],
+            "searchString": "^(project64)\\.exe$",
+            "archiveFileMatchWin": "^(project64)\\.rar$",
+            "archiveFileMatchLinux": "^(project64)\\.tar$",
+            "archiveFileMatchMac": "^(project64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": [
+              "reg",
+              "delete",
+              "\"HKCU\\SOFTWARE\\Project64\"",
+              "/v",
+              "\"user\"",
+              "/f",
+              "/reg:64",
+              "|",
+              "reg",
+              "delete",
+              "\"HKCU\\SOFTWARE\\Project64\"",
+              "/v",
+              "\"user\"",
+              "/f",
+              "/reg:32"
+            ]
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "nds",
+      "name": "Nintendo DS",
+      "company": "Nintendo",
+      "shortName": "nds",
+      "icon": "",
+      "config": {
+        "name": "Nintendo DS",
+        "shortName": "nds",
+        "companyName": "Nintendo",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "melonDS"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "ARCHIVE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "^(.+)\\.nds$|^(.+)\\.srl$",
+        "fileStructure": [],
+        "supportedArchiveTypes": [
+          ".zip",
+          ".rar",
+          ".7z",
+          ".gz"
+        ],
+        "supportedImageTypes": [],
+        "emulators": [
+          {
+            "name": "DeSmuME",
+            "os": [],
+            "path": "",
+            "iconFilename": "desmume.png",
+            "configFilePath": "",
+            "website": "http://desmume.org/download/",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [
+              ".nds",
+              ".ds",
+              ".srl",
+              ".zip",
+              ".7z",
+              ".rar",
+              ".gz"
+            ],
+            "searchString": "^(desmume.*)\\.exe$",
+            "archiveFileMatchWin": "^(desmume-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(desmume-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(desmume-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "nes",
+      "name": "Nintendo Entertainment System",
+      "company": "Nintendo",
+      "shortName": "nes",
+      "icon": "",
+      "config": {
+        "name": "Nintendo Entertainment System",
+        "shortName": "nes",
+        "companyName": "Nintendo",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "FCEUX"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "ARCHIVE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "^(.+)\\.nes$|^(.+)\\.nsf$|^(.+)\\.fds$|^(.+)\\.unf$",
+        "fileStructure": [],
+        "supportedArchiveTypes": [
+          ".zip"
+        ],
+        "supportedImageTypes": [
+          ""
+        ],
+        "emulators": [
+          {
+            "name": "FCEUX",
+            "os": [],
+            "path": "",
+            "iconFilename": "fceux.png",
+            "configFilePath": "fceux.cfg",
+            "website": "http://www.fceux.com/web/download.html",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [
+              ".zip"
+            ],
+            "searchString": "^(fceux)\\.exe$",
+            "archiveFileMatchWin": "^(fceux-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(fceux-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(fceux-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "ps2",
+      "name": "Sony Playstation 2",
+      "company": "Sony",
+      "shortName": "ps2",
+      "icon": "",
+      "config": {
+        "name": "Sony Playstation 2",
+        "shortName": "ps2",
+        "companyName": "Sony",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "PCSX2"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "IMAGE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [
+          ".iso",
+          ".bin",
+          ".cue",
+          ".img",
+          ".mdf",
+          ".nrg"
+        ],
+        "emulators": [
+          {
+            "name": "PCSX2",
+            "os": [],
+            "path": "",
+            "iconFilename": "pcsx2.png",
+            "configFilePath": "",
+            "website": "https://pcsx2.net/downloads",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [
+              ".iso",
+              ".bin",
+              ".img",
+              ".mdf",
+              ".nrg"
+            ],
+            "searchString": "^(pcsx2-r\\d+)\\.exe$|^(pcsx2)\\.exe$",
+            "archiveFileMatchWin": "^(pcsx2-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(pcsx2-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(pcsx2-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": true,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "ps3",
+      "name": "Sony Playstation 3",
+      "company": "Unknown",
+      "shortName": "ps3",
+      "icon": "",
+      "config": {
+        "name": "Sony Playstation 3",
+        "shortName": "ps3",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "RPCS3"
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "IMAGE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [
+          ".iso",
+          ".bin",
+          ".img",
+          ".mdf",
+          ".nrg"
+        ],
+        "emulators": [
+          {
+            "name": "RPCS3",
+            "os": [],
+            "path": "",
+            "iconFilename": "rpcs3.png",
+            "configFilePath": "",
+            "website": "https://rpcs3.net/download",
+            "startParameters": "%emupath% -loadbin %gamepath%",
+            "supportedFileTypes": [
+              ".iso",
+              ".bin",
+              ".img",
+              ".mdf",
+              ".nrg"
+            ],
+            "searchString": "^(rpcs3)\\.exe$",
+            "archiveFileMatchWin": "^(rpcs3-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(rpcs3-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(rpcs3-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "psp",
+      "name": "Sony Playstation Portable",
+      "company": "Sony",
+      "shortName": "psp",
+      "icon": "",
+      "config": {
+        "name": "Sony Playstation Portable",
+        "shortName": "psp",
+        "companyName": "Sony",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "PPSSPP"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "ARCHIVE_FILE_NAME_MATCH",
+          "IMAGE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "^(.+)\\.pbp$",
+        "fileStructure": [],
+        "supportedArchiveTypes": [
+          ".zip"
+        ],
+        "supportedImageTypes": [
+          ".iso",
+          ".cso"
+        ],
+        "emulators": [
+          {
+            "name": "PPSSPP",
+            "os": [],
+            "path": "",
+            "iconFilename": "ppsspp.png",
+            "configFilePath": "",
+            "website": "http://www.ppsspp.org/downloads.html",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [
+              ".iso",
+              ".cso",
+              ".pbp",
+              ".elf",
+              ".prx",
+              ".zip"
+            ],
+            "searchString": "^(ppsspp.*)\\.exe$",
+            "archiveFileMatchWin": "^(ppsspp-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(ppsspp-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(ppsspp-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "psx",
+      "name": "Sony Playstation 1",
+      "company": "Sony",
+      "shortName": "psx",
+      "icon": "",
+      "config": {
+        "name": "Sony Playstation 1",
+        "shortName": "psx",
+        "companyName": "Sony",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "ePSXe"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "IMAGE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "^SLES_[0-9]{3}\\.[0-9]{2}$|^SCUS_[0-9]{3}\\.[0-9]{2}$",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [
+          ".iso",
+          ".bin",
+          ".cue",
+          ".img",
+          ".mds"
+        ],
+        "emulators": [
+          {
+            "name": "ePSXe",
+            "os": [],
+            "path": "",
+            "iconFilename": "epsxe.png",
+            "configFilePath": "",
+            "website": "http://www.epsxe.com/download.php",
+            "startParameters": "%emupath% -loadbin %gamepath% -nogui",
+            "supportedFileTypes": [
+              ".iso",
+              ".bin",
+              ".img",
+              ".cue",
+              ".ccd",
+              ".mds",
+              ".pbp",
+              ".ecm"
+            ],
+            "searchString": "^(epsxe)\\.exe$",
+            "archiveFileMatchWin": "^(ePSXe(.*))\\.zip$",
+            "archiveFileMatchLinux": "^(ePSXe(.*)linux)\\.zip$|^(ePSXe(.*)linux_x64)\\.zip$",
+            "archiveFileMatchMac": "^(ePSXe(.*)\\.app)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": true,
+            "runCommandsBefore": []
+          },
+          {
+            "name": "FPse",
+            "os": [],
+            "path": "",
+            "iconFilename": "fpse.png",
+            "configFilePath": "",
+            "website": "http://www.zophar.net/psx/fpse.html",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(fpse)\\.exe$",
+            "archiveFileMatchWin": "^(fpse-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(fpse-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(fpse-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": true,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "scummvm",
+      "name": "ScummVM",
+      "company": "Unknown",
+      "shortName": "scummvm",
+      "icon": "",
+      "config": {
+        "name": "ScummVM",
+        "shortName": "scummvm",
+        "companyName": "",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "ScummVM"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_STRUCTURE_MATCH"
+        ],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [],
+        "searchFor": "^(.+)\\.la[0-9]+$",
+        "fileStructure": [
+          {
+            "folderName": "RESOURCE",
+            "files": [
+              "^(.+)\\.bun$",
+              "^(.+)\\.nut$",
+              "^(.+)\\.san$",
+              "^(.+)\\.tab$"
+            ]
+          }
+        ],
+        "emulators": [
+          {
+            "name": "ScummVM",
+            "os": [],
+            "path": "",
+            "iconFilename": "scummvm.png",
+            "configFilePath": "",
+            "website": "http://scummvm.org/downloads/",
+            "startParameters": "%emupath% -f -p %gamedir% %0%",
+            "supportedFileTypes": [
+              ".la0",
+              ".bun",
+              ".nut",
+              ".san",
+              ".tab"
+            ],
+            "searchString": "^(scummvm.*)\\.exe$",
+            "archiveFileMatchWin": "^(scummvm-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(scummvm-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(scummvm-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "snes",
+      "name": "Super Nintendo",
+      "company": "Nintendo",
+      "shortName": "snes",
+      "icon": "",
+      "config": {
+        "name": "Super Nintendo",
+        "shortName": "snes",
+        "companyName": "Nintendo",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "Snes9x"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "ARCHIVE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "^(.+)\\.smc|^(.+)\\.sfc$",
+        "fileStructure": [],
+        "supportedArchiveTypes": [
+          ".zip"
+        ],
+        "supportedImageTypes": [
+          ""
+        ],
+        "emulators": [
+          {
+            "name": "bsnes",
+            "os": [],
+            "path": "",
+            "iconFilename": "bsnes.png",
+            "configFilePath": "bsnes.conf",
+            "website": "https://bsnes.org/download",
+            "startParameters": "%emupath% %gamepath% -fullscreen",
+            "supportedFileTypes": [
+              ".zip",
+              ".smc"
+            ],
+            "searchString": "^(bsnes.*)\\.exe$",
+            "archiveFileMatchWin": "^(bsnes-windows)\\.zip$",
+            "archiveFileMatchLinux": "^(bsnes-linux)\\.tar$",
+            "archiveFileMatchMac": "^(bsnes-osx)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          },
+          {
+            "name": "Snes9x",
+            "os": [],
+            "path": "",
+            "iconFilename": "snes9x.png",
+            "configFilePath": "snes9x.conf",
+            "website": "http://www.snes9x.com/downloads.php",
+            "startParameters": "%emupath% %gamepath% -fullscreen",
+            "supportedFileTypes": [
+              ".zip",
+              ".smc"
+            ],
+            "searchString": "^(snes9x.*)\\.exe$",
+            "archiveFileMatchWin": "^(snes9x-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(snes9x-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(snes9x-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          },
+          {
+            "name": "ZSNES",
+            "os": [],
+            "path": "",
+            "iconFilename": "zsnes.png",
+            "configFilePath": "",
+            "website": "http://www.emuparadise.me/Super_Nintendo_Entertainment_System_(SNES)_Emulators/Windows/ZSNES/24",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [
+              ".zip",
+              ".smc"
+            ],
+            "searchString": "^(zsnesw)\\.exe$|^(zsnes)$",
+            "archiveFileMatchWin": "^(zsnes-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(zsnes-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(zsnes-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          },
+          {
+            "name": "FakeNES",
+            "os": [],
+            "path": "",
+            "iconFilename": "fakenes.png",
+            "configFilePath": "fakenesw.cfg",
+            "website": "https://sourceforge.net/projects/fakenes/files/",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [
+              ".zip",
+              ".smc"
+            ],
+            "searchString": "^(fakenesw)\\.exe$|^(fakenes)$",
+            "archiveFileMatchWin": "^(fakenes-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(fakenes-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(fakenes-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "switch",
+      "name": "Nintendo Switch",
+      "company": "Nintendo",
+      "shortName": "switch",
+      "icon": "",
+      "config": {
+        "name": "Nintendo Switch",
+        "shortName": "switch",
+        "companyName": "Nintendo",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "yuzu"
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "^(.*)\\.nsp$|^(.*)\\.xci$",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [],
+        "emulators": [
+          {
+            "name": "Ryujinx",
+            "os": [],
+            "path": "",
+            "iconFilename": "ryujinx.png",
+            "configFilePath": "",
+            "website": "https://ryujinx.org/download",
+            "startParameters": "%emupath% %gamepath%",
+            "supportedFileTypes": [
+              ".nsp",
+              ".xci"
+            ],
+            "searchString": "^(Ryujinx)\\.exe$",
+            "archiveFileMatchWin": "^(ryujinx-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(ryujinx-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(ryujinx-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          },
+          {
+            "name": "yuzu",
+            "os": [],
+            "path": "",
+            "iconFilename": "yuzu.png",
+            "configFilePath": "",
+            "website": "https://yuzu-emu.org/downloads/",
+            "startParameters": "%emupath% -g %gamepath%",
+            "supportedFileTypes": [
+              ".nsp",
+              ".xci"
+            ],
+            "searchString": "^(yuzu)\\.exe$",
+            "archiveFileMatchWin": "^(yuzu-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(yuzu-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(yuzu-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "wii",
+      "name": "Nintendo Wii",
+      "company": "Nintendo",
+      "shortName": "wii",
+      "icon": "",
+      "config": {
+        "name": "Nintendo Wii",
+        "shortName": "wii",
+        "companyName": "Nintendo",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "Dolphin"
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "IMAGE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "^(.+)\\.dol$|^(.+)\\.wbfs$|^(.+)\\.wad$",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [
+          ".iso",
+          ".ciso"
+        ],
+        "emulators": [
+          {
+            "name": "Dolphin",
+            "os": [],
+            "path": "",
+            "iconFilename": "dolphin.png",
+            "configFilePath": "",
+            "website": "https://dolphin-emu.org/download/",
+            "startParameters": "%emupath% /e %gamepath%",
+            "supportedFileTypes": [
+              ".wbfs",
+              ".ciso",
+              ".wad"
+            ],
+            "searchString": "^(dolphin)\\.exe$",
+            "archiveFileMatchWin": "^(dolphin-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(dolphin-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(dolphin-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false
+          },
+          {
+            "name": "Dolphin VR",
+            "os": [],
+            "path": "",
+            "iconFilename": "dolphin.png",
+            "configFilePath": "",
+            "website": "https://dolphinvr.wordpress.com/downloads/",
+            "startParameters": "%emupath% /e %gamepath%",
+            "supportedFileTypes": [
+              "^\\.gcm$",
+              "^\\.gcz$"
+            ],
+            "searchString": "^(dolphin)\\.exe$",
+            "archiveFileMatchWin": "^(dolphin-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(dolphin-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(dolphin-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "wii-u",
+      "name": "Nintendo Wii U",
+      "company": "Nintendo",
+      "shortName": "wii-u",
+      "icon": "",
+      "config": {
+        "name": "Nintendo Wii U",
+        "shortName": "wii-u",
+        "companyName": "Nintendo",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "Cemu"
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH",
+          "IMAGE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "^(.*)\\.rpx$|^(.*)\\.wud$|^(.*)\\.wux$",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [
+          ".iso"
+        ],
+        "emulators": [
+          {
+            "name": "Cemu",
+            "os": [],
+            "path": "",
+            "iconFilename": "cemu.png",
+            "configFilePath": "",
+            "website": "http://cemu.info/#download",
+            "startParameters": "%emupath% -g %gamepath%",
+            "supportedFileTypes": [
+              ".rpx",
+              ".wud",
+              ".wux"
+            ],
+            "searchString": "^(cemu)\\.exe$",
+            "archiveFileMatchWin": "^(cemu_(.*))\\.zip$",
+            "archiveFileMatchLinux": "^(cemu_(.*))\\.tar$",
+            "archiveFileMatchMac": "^(cemu_(.*))\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "windows",
+      "name": "Microsoft Windows",
+      "company": "Microsoft",
+      "shortName": "pc",
+      "icon": "",
+      "config": {
+        "name": "Microsoft Windows",
+        "shortName": "pc",
+        "companyName": "Microsoft",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "Windows Shell"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [],
+        "emulators": [
+          {
+            "name": "Windows Shell",
+            "os": [],
+            "path": "%windir%\\system32\\cmd.exe",
+            "iconFilename": "win-8.png",
+            "configFilePath": "",
+            "website": "https://www.microsoft.com/resources/documentation/windows/xp/all/proddocs/en-us/cmd.mspx",
+            "startParameters": "%gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(cmd)\\.exe$",
+            "archiveFileMatchWin": "",
+            "archiveFileMatchLinux": "",
+            "archiveFileMatchMac": "",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": false,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "windows",
+        "autoSearchEnabled": false
+      }
+    },
+    {
+      "id": "xbox",
+      "name": "Microsoft Xbox",
+      "company": "Microsoft",
+      "shortName": "xbox",
+      "icon": "",
+      "config": {
+        "name": "Microsoft Xbox",
+        "shortName": "xbox",
+        "companyName": "Microsoft",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "Qemu"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [],
+        "emulators": [
+          {
+            "name": "Qemu",
+            "os": [],
+            "path": "",
+            "iconFilename": "blank.png",
+            "configFilePath": "",
+            "website": "http://wiki.qemu.org/Download",
+            "startParameters": "%gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(qemu)\\.exe$",
+            "archiveFileMatchWin": "^(qemu-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(qemu-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(qemu-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          },
+          {
+            "name": "XQEMU",
+            "os": [],
+            "path": "",
+            "iconFilename": "blank.png",
+            "configFilePath": "",
+            "website": "https://github.com/xqemu/xqemu",
+            "startParameters": "%gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(xqemu)\\.exe$",
+            "archiveFileMatchWin": "^(xqemu-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(xqemu-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(xqemu-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          },
+          {
+            "name": "Xeon",
+            "os": [],
+            "path": "",
+            "iconFilename": "xeon.png",
+            "configFilePath": "",
+            "website": "http://www.emulator-zone.com/doc.php/xbox/xeon.html",
+            "startParameters": "%gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(xeon)\\.exe$",
+            "archiveFileMatchWin": "^(xeon-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(xeon-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(xeon-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    },
+    {
+      "id": "xbox360",
+      "name": "Microsoft Xbox 360",
+      "company": "Microsoft",
+      "shortName": "xbox360",
+      "icon": "",
+      "config": {
+        "name": "Microsoft Xbox 360",
+        "shortName": "xbox360",
+        "companyName": "Microsoft",
+        "iconFilename": "",
+        "defaultGameCover": "",
+        "recommendedEmulators": [
+          "Xenia"
+        ],
+        "plugins": [
+          {
+            "covers": "",
+            "titles": ""
+          }
+        ],
+        "gameSearchModes": [
+          "FILE_FILE_NAME_MATCH"
+        ],
+        "searchFor": "",
+        "fileStructure": [],
+        "supportedArchiveTypes": [],
+        "supportedImageTypes": [],
+        "emulators": [
+          {
+            "name": "Xenia",
+            "os": [],
+            "path": "",
+            "iconFilename": "xenia.png",
+            "configFilePath": "",
+            "website": "http://xenia.jp/download/",
+            "startParameters": "%gamepath%",
+            "supportedFileTypes": [],
+            "searchString": "^(xenia)\\.exe$",
+            "archiveFileMatchWin": "^(xenia-(.*)-win_x64)\\.zip$",
+            "archiveFileMatchLinux": "^(xenia-(.*)-linux_x64)\\.tar$",
+            "archiveFileMatchMac": "^(xenia-(.*)-osx_x64)\\.zip$",
+            "setupFileMatchWin": "",
+            "setupFileMatchLinux": "",
+            "setupFileMatchMac": "",
+            "autoSearchEnabled": true,
+            "biosRequired": false,
+            "runCommandsBefore": []
+          }
+        ],
+        "directExecutionMode": "none",
+        "autoSearchEnabled": true
+      }
+    }
+  ],
+  "gameLists": [
+    {
+      "id": "3ds",
+      "file": "3ds.json",
+      "platformId": "3ds"
+    },
+    {
+      "id": "dc",
+      "file": "dc.json",
+      "platformId": "dreamcast"
+    },
+    {
+      "id": "gb",
+      "file": "gb.json",
+      "platformId": "gameboy"
+    },
+    {
+      "id": "gba",
+      "file": "gba.json",
+      "platformId": "gba"
+    },
+    {
+      "id": "gbc",
+      "file": "gbc.json",
+      "platformId": "gameboy"
+    },
+    {
+      "id": "n64",
+      "file": "n64.json",
+      "platformId": "n64"
+    },
+    {
+      "id": "nds",
+      "file": "nds.json",
+      "platformId": "nds"
+    },
+    {
+      "id": "nes",
+      "file": "nes.json",
+      "platformId": "nes"
+    },
+    {
+      "id": "ps2",
+      "file": "ps2.json",
+      "platformId": "ps2"
+    },
+    {
+      "id": "ps3",
+      "file": "ps3.json",
+      "platformId": "ps3"
+    },
+    {
+      "id": "psp",
+      "file": "psp.json",
+      "platformId": "psp"
+    },
+    {
+      "id": "psx",
+      "file": "psx.json",
+      "platformId": "psx"
+    },
+    {
+      "id": "scummvm",
+      "file": "scummvm.json",
+      "platformId": "scummvm"
+    },
+    {
+      "id": "snes",
+      "file": "snes.json",
+      "platformId": "snes"
+    },
+    {
+      "id": "switch",
+      "file": "switch.json",
+      "platformId": "switch"
+    },
+    {
+      "id": "wiiu",
+      "file": "wiiu.json",
+      "platformId": "wii-u"
+    }
+  ],
+  "generatedAt": "2026-02-02T17:11:22.418Z"
+}

@@ -1,0 +1,34 @@
+/* --- 9. TOOLS SPECIFIC --- */
+.btn-indicator {
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    border-radius: 0;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    transition: 0.1s;
+}
+.btn-indicator.pressed {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.game-list-container {
+    display: grid;
+    gap: 10px;
+}
+.game-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 0;
+    transition: 0.2s;
+}
+.game-row:hover {
+    border-color: var(--accent);
+}
+.tool-section { margin-bottom: 40px; }

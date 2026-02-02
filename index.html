@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>emuBro | Modern Retro Launcher</title>
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="emuBro | Modern Retro Launcher">
+    <meta property="og:description" content="All your retro. One seamless home. Categorize your games and associate emulators easier than ever before.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/sysoutch/emuBro/master/resources/logo.png">
+    <meta property="og:url" content="https://emubro.net">
+    <meta property="og:type" content="website">
+
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Content wrapper: Boxed layout with background, centered */
+        .content-wrapper { 
+            background: var(--bg); 
+            width: 100%; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding-top: 2rem; 
+            padding-bottom: 2rem; 
+            flex: 1; 
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+        }
+        /* Ensure inner container fits nicely */
+        .content-wrapper .container { margin: 0 auto; padding: 0 2rem; width: 100%; }
+        
+        /* View adjustments */
+        .view.active { display: flex; flex-direction: column; align-items: center; } /* Align items center to keep wrapper centered if needed, but margin auto handles it */
+        .view { display: none; }
+        
+        /* Make sure main spans full width to allow wrapper to be centered in it */
+        main { width: 100%; }
+    </style>
+</head>
+<body>
+    <canvas id="pixel-bg" style="position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1;"></canvas>
+
+    <div class="ticker">
+        <div class="ticker-content">
+            ⚡ RELEASE: emuBro v2.0 Beta now supports ordering pizza • 🎮 TRENDING: Half Life 3 released! • 🛠️ TOOLS: Added 1-Click world peace maker • 📖 Discord: Over 1,300 unfriendly people • 
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo" onclick="showView('home')"><span><img src="logo.png" /></span> emuBro</div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <div class="nav-menu">
+                <button class="chip" onclick="showView('download')">Download</button>
+                <button class="chip" onclick="showView('emulators')">Emulators</button>
+                <button class="chip" onclick="showView('games')">Games</button>
+                <button class="chip" onclick="showView('tools')">Tools</button>
+                <button class="chip" onclick="showView('netplay')">Netplay</button>
+                <button class="chip" onclick="showView('blog')">Blog</button>
+            </div>
+            <div class="nav-actions">
+                <select id="themeSelect" class="theme-select">
+                    <option value="dark">Pixel Dark</option>
+                    <option value="mario">Mario World</option>
+                    <option value="gb-green">GameBoy Green</option>
+                    <option value="gb-blue">GameBoy Blue</option>
+                    <option value="modern-dark">Modern Dark</option>
+                    <option value="modern-light">Modern Light</option>
+                </select>
+                <button class="chip" onclick="openSearch()">🔍 Search</button>
+            </div>
+        </div>
+    </nav>
+
+    <main id="view-home" class="view active">
+        <div class="container">
+            <header class="hero" style="position:relative;">
+                <span class="badge">Next-Gen Retro Experience</span>
+                <h1>All your retro.<br><span class="gradient-text">One seamless home.</span></h1>
+                <p>Categorize your games and associate emulators easier than ever before. We handle the technical stuff, you do the playing.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 4rem;">
+                    <button class="btn-primary" onclick="showView('download')">Download for Windows</button>
+                    <button class="chip" style="padding: 18px 36px; border-radius: 0;" onclick="showView('emulators')">Explore Cores</button>
+                </div>
+            </header>
+        </div>
+        
+        <div class="content-wrapper">
+            <div class="container">
+                <div class="grid">
+                    <div class="card" style="grid-column: span 2;">
+                        <h3 style="font-size: 1.8rem; margin-bottom: 10px;">User-Oriented</h3>
+                        <p style="color: var(--text-dim);">The platform detection does almost everything for you. Point to your platforms and play instantly.</p>
+                    </div>
+                    <div class="card">
+                        <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Bromunity</h3>
+                        <p style="color: var(--text-dim);">Built-in system to bring gamers together. Share libraries and track stats.</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 60px; text-align: center;">
+                    <h2 style="margin-bottom: 20px;">See it in Action</h2>
+                    <div class="card" style="padding: 10px; display: inline-block; max-width: 100%;">
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; width: 800px;">
+                            <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" 
+                                src="https://www.youtube.com/embed/1PNoHDD5iXo" 
+                                title="emuBro Trailer" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 60px;">
+                    <h2 style="margin-bottom: 20px; text-align: center;">Join the Community</h2>
+                    <div class="grid">
+                        <div class="card">
+                            <h3>Socials</h3>
+                            <ul style="list-style: none; margin-top: 15px; line-height: 2;">
+                                <li><a href="https://www.twitch.tv/emubrotv" target="_blank" style="color: var(--accent);">Twitch</a> ・ <a href="https://www.youtube.com/channel/UC9zQuEiPjnRv2LXVqR57K1Q" target="_blank" style="color: var(--accent);">YouTube</a></li>
+                                <li><a href="https://bsky.app/profile/emubro.bsky.social" target="_blank" style="color: var(--accent);">Bluesky</a> / <a href="https://twitter.com/emuBro" target="_blank" style="color: var(--text-dim); text-decoration: line-through;">Shitter</a></li>
+                                <li><a href="https://www.reddit.com/r/emuBro/" target="_blank" style="color: var(--accent);">Reddit</a> / <a href="https://lemmy.world/c/emubro" target="_blank" style="color: var(--accent);">Lemmy</a></li>
+                            </ul>
+                        </div>
+                        <div class="card">
+                            <h3>Support Us</h3>
+                            <p style="color: var(--text-dim); margin-bottom: 15px;">If you like what we do, consider buying us a coffee.</p>
+                            <a href="https://ko-fi.com/emuBro/" target="_blank" class="btn-primary" style="display:inline-block; text-decoration:none; padding: 10px 20px; font-size: 0.9rem;">☕ Support on Ko-fi</a>
+                        </div>
+                        <div class="card">
+                            <h3>Discord</h3>
+                            <div style="margin-top: 10px;">
+                                <div style="margin-bottom: 10px;">
+                                    <strong>emuBro</strong><br>
+                                    <a href="https://discord.gg/EtKvZ2F" target="_blank" style="color: var(--accent);">Join Server</a>
+                                </div>
+                                <div>
+                                    <strong>URage</strong><br>
+                                    <a href="https://discord.gg/n3jkrtN" target="_blank" style="color: var(--accent);">Join Server</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="view-emulators" class="view">
+        <div class="content-wrapper">
+            <div class="container">
+                <h1 style="margin-bottom: 1rem;">System <span class="gradient-text">Cores</span></h1>
+                <div class="grid" id="emuGrid">
+                    <!-- Populated by script.js -->
+                    <div class="loader">Loading platforms...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="view-games" class="view">
+        <div class="content-wrapper">
+            <div class="container">
+                <h1>Your <span class="gradient-text">Library</span></h1>
+                <div class="content-area" style="margin-top: 40px;">
+                    <!-- Populated by script.js -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="view-download" class="view">
+        <div class="content-wrapper">
+            <div class="container">
+                <h1 class="hero">Get <span class="gradient-text">emuBro</span></h1>
+                <div class="card" style="text-align: center; max-width: 600px; margin: 0 auto;">
+                    <p>Check our GitHub for the latest releases.</p>
+                    <a href="https://github.com/sysoutch/emuBro" target="_blank" class="btn-primary" style="margin-top: 20px; display: inline-block; text-decoration: none;">View on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <main id="view-tags" class="view">
+        <div class="content-wrapper">
+            <div class="container">
+                <h1>Tags</h1><p>Coming soon...</p>
+            </div>
+        </div>
+    </main>
+    
+    <main id="view-tools" class="view">
+        <div class="content-wrapper">
+            <div class="container">
+                <h1>Tools</h1>
+                <!-- Populated by script.js (Gamepad Tester, Memory Card Reader) -->
+            </div>
+        </div>
+    </main>
+    
+    <main id="view-netplay" class="view">
+        <div class="content-wrapper">
+            <div class="container">
+                <h1>Netplay</h1><p>Coming soon...</p>
+            </div>
+        </div>
+    </main>
+    
+    <main id="view-blog" class="view">
+        <div class="content-wrapper">
+            <div class="container">
+                <h1>Latest <span class="gradient-text">News</span></h1>
+                <div class="grid" id="blogGrid">
+                    <div class="loader">Loading posts...</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="view-blog-post" class="view">
+        <div class="content-wrapper">
+            <div class="container">
+                <button class="chip" onclick="showView('blog')" style="margin-bottom: 20px;">← Back to Blog</button>
+                <div id="blogPostContent">
+                    <!-- Populated by script.js -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo" style="margin-bottom: 1.5rem;"><span><img src="logo.png" /></span> emuBro</div>
+                    <p style="color: var(--text-dim);">Built for gamers, by gamers. Simplifying retro emulation since 2015.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Software</h4>
+                    <a href="#" onclick="showView('download')">Download</a>
+                    <a href="/admin" target="_blank">Blog Admin</a>
+                    <a href="https://github.com/sysoutch/emuBro" target="_blank">Source Code</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Community</h4>
+                    <a href="https://discord.gg/EtKvZ2F" target="_blank">Discord</a>
+                    <a href="https://github.com/sysoutch/emuBro" target="_blank">GitHub</a>
+                    <a href="https://www.reddit.com/r/emuBro/" target="_blank">Reddit</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Social</h4>
+                    <a href="https://twitter.com/emuBro" target="_blank">Twitter</a>
+                    <a href="https://www.youtube.com/channel/UC9zQuEiPjnRv2LXVqR57K1Q" target="_blank">YouTube</a>
+                    <a href="https://bsky.app/profile/emubro.bsky.social" target="_blank">Bluesky</a>
+                </div>
+            </div>
+            <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); color: var(--text-dim); font-size: 0.8rem; display: flex; justify-content: space-between;">
+                <p>© 2026 emuBro Project. All rights reserved.</p>
+                <p>sysout.ch</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="searchModal">
+        <div class="modal-box">
+            <input type="text" id="modalInput" placeholder="Quick Find..." oninput="handleSearch(this.value)">
+            <div id="searchResults" style="margin-top:20px;"></div>
+        </div>
+    </div>
+
+    <script src="bg-pixel.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
