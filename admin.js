@@ -1,3 +1,4 @@
+
 const API_URL = '/api';
 let token = localStorage.getItem('token');
 let editor; // GrapesJS instance
@@ -62,6 +63,7 @@ tabButtons.forEach(btn => {
             loadPagesList();
             if (!editor) initGrapesJS();
         }
+        if (btn.dataset.view === 'mediaView') loadMedia();
     });
 });
 
@@ -98,6 +100,20 @@ loginForm.addEventListener('submit', async (e) => {
 // --- BLOG POSTS ---
 const postForm = document.getElementById('postForm');
 const imageInput = document.getElementById('imageInput');
+const newPostBtn = document.getElementById('newPostBtn');
+const postFormTitle = document.getElementById('postFormTitle');
+const postIdInput = document.getElementById('postId');
+
+if (newPostBtn) {
+    newPostBtn.addEventListener('click', () => {
+        postForm.reset();
+        postIdInput.value = '';
+        postFormTitle.textContent = 'Write New Post';
+        document.getElementById('imagePreview').style.display = 'none';
+        visualEditor.innerHTML = '';
+        codeContent.value = '';
+    });
+}
 
 // Editor Tabs Logic
 const editorTabBtns = document.querySelectorAll('[data-editor-view]');
@@ -268,8 +284,7 @@ if (postForm) {
             
             if (res.ok) {
                 alert('Post published!');
-                postForm.reset();
-                document.getElementById('imagePreview').style.display = 'none';
+                newPostBtn.click(); // Reset form
                 loadPosts();
             } else {
                 alert('Failed to publish');
@@ -297,7 +312,10 @@ async function loadPosts() {
                     <strong>${p.title}</strong><br>
                     <span style="font-size:0.8rem; color:var(--text-dim);">${new Date(p.date).toLocaleDateString()}</span>
                 </div>
-                <!-- <a href="/blog/posts/${p.slug}" target="_blank" class="chip">View</a> -->
+                <div style="display:flex; gap:10px;">
+                    <button class="chip" onclick='editPost(${JSON.stringify(p).replace(/'/g, "'")})'>Edit</button>
+                    <button class="chip" style="color:red; border-color:red;" onclick="deletePost('${p.slug}')">Delete</button>
+                </div>
             </div>
         `).join('');
     } catch (err) {
@@ -305,9 +323,44 @@ async function loadPosts() {
     }
 }
 
+window.editPost = (post) => {
+    postFormTitle.textContent = 'Edit Post';
+    postIdInput.value = post.id;
+    document.getElementById('title').value = post.title;
+    document.getElementById('content').value = post.content;
+    document.getElementById('imageUrl').value = post.image || '';
+    
+    if (post.image) {
+        const img = document.getElementById('imagePreview');
+        img.src = post.image;
+        img.style.display = 'block';
+    } else {
+        document.getElementById('imagePreview').style.display = 'none';
+    }
+    
+    syncFromMarkdown();
+    window.scrollTo(0, 0);
+};
+
+window.deletePost = async (slug) => {
+    if (!confirm('Are you sure you want to delete this post?')) return;
+    try {
+        const res = await fetchWithAuth(`${API_URL}/posts/${slug}`, { method: 'DELETE' });
+        if (res.ok) {
+            alert('Post deleted');
+            loadPosts();
+        } else {
+            alert('Failed to delete');
+        }
+    } catch (e) {
+        console.error(e);
+    }
+};
+
 // --- THEME EDITOR ---
 const themeForm = document.getElementById('themeForm');
 const colorInputs = document.querySelectorAll('.color-input');
+const themeSettings = document.querySelectorAll('.theme-setting');
 
 if (themeForm) {
     themeForm.addEventListener('submit', async (e) => {
@@ -316,6 +369,9 @@ if (themeForm) {
         const colors = {};
         colorInputs.forEach(input => {
             colors[input.name] = input.value;
+        });
+        themeSettings.forEach(input => {
+            colors[input.name] = input.name.includes('font-size') ? input.value + 'px' : input.value + (input.name.includes('size') ? 'rem' : '');
         });
 
         const themeName = document.getElementById('themeName').value.toLowerCase().replace(/[^a-z0-9-]/g, '');
@@ -421,7 +477,143 @@ window.deleteUser = async (id) => {
     }
 };
 
-// --- PAGE EDITOR (GrapesJS) ---
+// --- PAGE EDITOR ---
+let activeMediaTarget = null; // 'post' or 'page'
+
+window.openMediaSelector = (target) => {
+    activeMediaTarget = target;
+    document.getElementById('mediaSelectorModal').classList.add('active');
+    switchMediaSelectorTab('library');
+    loadMediaSelector();
+};
+
+window.closeMediaSelector = () => {
+    document.getElementById('mediaSelectorModal').classList.remove('active');
+};
+
+window.switchMediaSelectorTab = (tab) => {
+    const tabs = document.querySelectorAll('#mediaSelectorModal .tabs .tab-btn');
+    tabs.forEach(t => t.classList.toggle('active', t.textContent.toLowerCase().includes(tab)));
+    
+    document.getElementById('mediaSelectorLibrary').style.display = tab === 'library' ? 'block' : 'none';
+    document.getElementById('mediaSelectorUrl').style.display = tab === 'url' ? 'block' : 'none';
+};
+
+async function loadMediaSelector() {
+    const grid = document.getElementById('mediaSelectorGrid');
+    grid.innerHTML = 'Loading...';
+    try {
+        const res = await fetchWithAuth(`${API_URL}/media/`);
+        const media = await res.json();
+        grid.innerHTML = media.filter(m => m.type === 'image').map(m => `
+            <div style="cursor:pointer; border:1px solid var(--border); aspect-ratio:1;" onclick="selectMedia('${m.url}')">
+                <img src="${m.url}" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+        `).join('');
+    } catch (e) {
+        grid.innerHTML = 'Error';
+    }
+}
+
+window.selectMedia = (url) => {
+    if (!url) return;
+    const imgHtml = `<img src="${url}" style="max-width:100%; height:auto;">`;
+    if (activeMediaTarget === 'post') {
+        document.execCommand('insertHTML', false, imgHtml);
+        syncFromVisual();
+    } else if (activeMediaTarget === 'page') {
+        document.execCommand('insertHTML', false, imgHtml);
+        syncFromVisualPage();
+    }
+    closeMediaSelector();
+    document.getElementById('externalImageUrl').value = '';
+};
+
+const pageForm = document.getElementById('pageForm');
+const pTitle = document.getElementById('pTitle');
+const pSlug = document.getElementById('pSlug');
+const pageIdInput = document.getElementById('pageId');
+const pContent = document.getElementById('pContent');
+const pageVisualEditor = document.getElementById('pageVisualEditor');
+const pCodeContent = document.getElementById('pCodeContent');
+const pageEditorTabBtns = document.querySelectorAll('[data-page-editor-view]');
+const pageEditorSubViews = document.querySelectorAll('.page-editor-sub-view');
+
+window.execCmdPage = (cmd, val = null) => {
+    document.execCommand(cmd, false, val);
+    pageVisualEditor.focus();
+    syncFromVisualPage();
+};
+
+function syncFromVisualPage() {
+    const html = pageVisualEditor.innerHTML;
+    pContent.value = turndownService.turndown(html);
+    pCodeContent.value = html;
+}
+
+function syncFromMarkdownPage() {
+    const md = pContent.value;
+    const html = marked.parse(md);
+    pageVisualEditor.innerHTML = html;
+    pCodeContent.value = html;
+}
+
+pageEditorTabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const targetViewId = btn.dataset.pageEditorView;
+        pageEditorTabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        pageEditorSubViews.forEach(v => v.style.display = 'none');
+        document.getElementById(targetViewId).style.display = 'block';
+
+        if (targetViewId === 'pVisualView') syncFromMarkdownPage();
+        else if (targetViewId === 'pCodeView') pCodeContent.value = marked.parse(pContent.value);
+    });
+});
+
+pContent.addEventListener('input', syncFromMarkdownPage);
+pageVisualEditor.addEventListener('input', syncFromVisualPage);
+
+if (pageForm) {
+    pageForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const data = {
+            title: pTitle.value,
+            slug: pSlug.value,
+            html: marked.parse(pContent.value),
+            components: pContent.value // We reuse components field for Markdown content
+        };
+        try {
+            const res = await fetchWithAuth(`${API_URL}/pages`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            if (res.ok) {
+                alert('Page saved!');
+                loadPagesList();
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    });
+}
+
+document.getElementById('pDeleteBtn')?.addEventListener('click', async () => {
+    const slug = pSlug.value;
+    if (!slug || !confirm('Delete this page?')) return;
+    try {
+        const res = await fetchWithAuth(`${API_URL}/pages/${slug}`, { method: 'DELETE' });
+        if (res.ok) {
+            alert('Deleted');
+            document.getElementById('newPageBtn').click();
+            loadPagesList();
+        }
+    } catch (e) {
+        console.error(e);
+    }
+});
+
 function initGrapesJS() {
     editor = grapesjs.init({
         container: '#gjs',
@@ -491,13 +683,10 @@ if(pageSelect) {
             const res = await fetch(`${API_URL}/pages/${slug}`);
             const page = await res.json();
             
-            pageTitleInput.value = page.title;
-            pageSlugInput.value = page.slug;
-            
-            if(editor) {
-                editor.setComponents(page.components || page.html);
-                editor.setStyle(page.styles || page.css);
-            }
+            pTitle.value = page.title;
+            pSlug.value = page.slug;
+            pContent.value = page.components || '';
+            syncFromMarkdownPage();
         } catch(e) {
             alert('Failed to load page');
         }
@@ -507,12 +696,11 @@ if(pageSelect) {
 if(newPageBtn) {
     newPageBtn.addEventListener('click', () => {
         pageSelect.value = '';
-        pageTitleInput.value = '';
-        pageSlugInput.value = '';
-        if(editor) {
-            editor.setComponents('');
-            editor.setStyle('');
-        }
+        pTitle.value = '';
+        pSlug.value = '';
+        pContent.value = '';
+        pageVisualEditor.innerHTML = '';
+        pCodeContent.value = '';
     });
 }
 
@@ -569,6 +757,132 @@ if(deletePageBtn) {
         }
     });
 }
+
+// --- MEDIA LIBRARY ---
+const mediaGrid = document.getElementById('mediaGrid');
+const mediaDetails = document.getElementById('mediaDetails');
+const mediaDetailsForm = document.getElementById('mediaDetailsForm');
+const mediaUploadInput = document.getElementById('mediaUploadInput');
+
+async function loadMedia() {
+    if (!mediaGrid) return;
+    mediaGrid.innerHTML = 'Loading media...';
+    try {
+        const res = await fetchWithAuth(`${API_URL}/media/`);
+        const media = await res.json();
+        
+        if (media.length === 0) {
+            mediaGrid.innerHTML = '<p style="grid-column:1/-1;">No media found.</p>';
+            return;
+        }
+
+        mediaGrid.innerHTML = media.map(m => `
+            <div class="card" style="padding:10px; cursor:pointer; position:relative;" onclick='showMediaDetails(${JSON.stringify(m).replace(/'/g, "'")})'>
+                <div style="aspect-ratio:1; background:#000; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+                    ${m.type === 'video' ? '📹' : `<img src="${m.url}" style="width:100%; height:100%; object-fit:cover;">`}
+                </div>
+                <div style="font-size:0.7rem; margin-top:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${m.originalName || m.filename}</div>
+            </div>
+        `).join('');
+    } catch (e) {
+        mediaGrid.innerHTML = '<p class="error">Error loading media</p>';
+    }
+}
+
+window.showMediaDetails = (m) => {
+    mediaDetails.style.display = 'block';
+    document.getElementById('detailsMediaId').value = m.id;
+    document.getElementById('detailsUrl').value = m.url;
+    document.getElementById('detailsAltText').value = m.altText || '';
+    document.getElementById('detailsOriginalName').value = m.originalName || m.filename;
+    
+    const preview = document.getElementById('mediaPreviewLarge');
+    if (m.type === 'video') {
+        preview.innerHTML = `<video src="${m.url}" controls style="max-width:100%; max-height:300px;"></video>`;
+    } else {
+        preview.innerHTML = `<img src="${m.url}" style="max-width:100%; max-height:300px; border:1px solid var(--border);">`;
+    }
+    
+    mediaDetails.scrollIntoView({ behavior: 'smooth' });
+};
+
+if (mediaDetailsForm) {
+    mediaDetailsForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const id = document.getElementById('detailsMediaId').value;
+        const data = {
+            altText: document.getElementById('detailsAltText').value,
+            originalName: document.getElementById('detailsOriginalName').value
+        };
+
+        try {
+            const res = await fetchWithAuth(`${API_URL}/media/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            if (res.ok) {
+                alert('Media updated');
+                loadMedia();
+            }
+        } catch (e) {
+            alert('Error updating media');
+        }
+    });
+}
+
+window.deleteMediaFromDetails = async () => {
+    const id = document.getElementById('detailsMediaId').value;
+    if (!confirm('Delete this file permanently?')) return;
+    
+    try {
+        const res = await fetchWithAuth(`${API_URL}/media/${id}`, { method: 'DELETE' });
+        if (res.ok) {
+            mediaDetails.style.display = 'none';
+            loadMedia();
+        }
+    } catch (e) {
+        alert('Error deleting');
+    }
+};
+
+if (mediaUploadInput) {
+    mediaUploadInput.addEventListener('change', async (e) => {
+        const files = e.target.files;
+        for (const file of files) {
+            const formData = new FormData();
+            formData.append('file', file);
+            try {
+                await fetchWithAuth(`${API_URL}/media/upload`, { method: 'POST', body: formData });
+            } catch (e) {
+                console.error('Upload failed for', file.name);
+            }
+        }
+        loadMedia();
+    });
+}
+
+window.addMediaFromUrl = async () => {
+    const url = prompt('Enter Media URL:');
+    if (!url) return;
+    const type = url.match(/\.(mp4|webm|ogg)$/i) ? 'video' : 'image';
+    const altText = prompt('Alt text / Description:');
+    
+    try {
+        await fetchWithAuth(`${API_URL}/media/url`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ url, type, altText })
+        });
+        loadMedia();
+    } catch (e) {
+        alert('Error adding URL');
+    }
+};
+
+window.copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(() => alert('URL copied!'));
+};
 
 // Init
 if (!token) {

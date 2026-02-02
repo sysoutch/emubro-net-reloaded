@@ -281,9 +281,13 @@ async function renderBlog() {
         container.innerHTML = posts.map((p, i) => {
             // Strip HTML/Markdown for preview
             const previewText = p.content.replace(/<[^>]*>/g, '').substring(0, 150) + '...';
+            const imageStyle = p.image ? 
+                `background:url('${p.image}') center/cover;` : 
+                `background:linear-gradient(45deg, var(--bg-card, #274056), var(--accent, #00ff9d)); opacity:0.3;`;
+            
             return `
                 <div class="card" style="padding:0; overflow:hidden; cursor:pointer;" onclick="openBlogPost(${i})">
-                    ${p.image ? `<div style="height:200px; background:url('${p.image}') center/cover;"></div>` : ''}
+                    <div style="height:200px; ${imageStyle}"></div>
                     <div style="padding:25px;">
                         <div style="color:var(--accent); font-size:0.8rem; font-weight:700; margin-bottom:10px;">${new Date(p.date).toLocaleDateString()}</div>
                         <h3 style="margin-bottom:10px;">${p.title}</h3>
@@ -328,10 +332,14 @@ window.openBlogPost = function(index) {
     // Render Markdown to HTML
     const htmlContent = marked.parse(post.content);
     
+    const imageHtml = post.image ? 
+        `<img src="${post.image}" style="width:100%; max-height:500px; object-fit:cover; margin-bottom:30px; border:2px solid var(--border);">` : 
+        `<div style="width:100%; height:200px; background:linear-gradient(45deg, var(--bg-card, #274056), var(--accent, #00ff9d)); opacity:0.2; margin-bottom:30px; border:2px solid var(--border);"></div>`;
+
     content.innerHTML = `
         <h1 style="margin-bottom:10px; font-size: clamp(2rem, 5vw, 3rem);">${post.title}</h1>
         <div style="color:var(--accent); margin-bottom:30px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">${new Date(post.date).toLocaleDateString()}</div>
-        ${post.image ? `<img src="${post.image}" style="width:100%; max-height:500px; object-fit:cover; margin-bottom:30px; border:2px solid var(--border);">` : ''}
+        ${imageHtml}
         <div class="blog-content" style="line-height:1.8; color:var(--text-main); font-size: 1.1rem;">${htmlContent}</div>
     `;
 };

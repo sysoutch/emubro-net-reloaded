@@ -1,8 +1,8 @@
 :root {
   --bg: #0f172a;
   --card-bg: rgba(39, 64, 86, 0.85); /* Brand color background */
-  --accent: #00ff9d; /* Retro Green Accent */
-  --accent-glow: rgba(0, 255, 157, 0.4);
+  --accent: #00b571; /* Retro Green Accent */
+  --accent-glow: rgba(39, 82, 107, 0.4);
   --secondary-glow: rgba(76, 201, 240, 0.3);
   --text-main: #e2e8f0;
   --text-dim: #94a3b8;
@@ -59,7 +59,7 @@
 [data-theme=modern-dark] {
   --bg: #09090b;
   --card-bg: rgba(24, 24, 27, 0.9);
-  --accent: #3b82f6;
+  --accent: #23558a;
   --accent-glow: rgba(59, 130, 246, 0.3);
   --text-main: #fafafa;
   --text-dim: #a1a1aa;
@@ -84,7 +84,7 @@
 [data-theme=modern-light] {
   --bg: #cbcbf5;
   --card-bg: rgba(203, 203, 231, 0.9);
-  --accent: #3b82f6;
+  --accent: #23558a;
   --accent-glow: rgba(19, 40, 75, 0.3);
   --text-main: #f8f7f700;
   --text-dim: #414146;

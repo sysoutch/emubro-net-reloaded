@@ -11,14 +11,18 @@ The project is currently in a prototype/frontend implementation phase. The basic
 -   Search modal functionality.
 -   **v2.0 Beta Update:** Ticker announcement of Cloud Saves and 1-Click BIOS Installer (UI placeholders/announcements).
 -   **Advanced Blog Editor:** Implemented a multi-tab (Visual, Markdown, Code) blog post editor in the admin panel with real-time bidirectional sync using `marked.js` and `turndown.js`.
+-   **Full Backend Integration:** Developed a Node.js/Express backend with SQLite database support using Sequelize.
+-   **RESTful API Implementation:** Created APIs for Posts, Pages, Media, Themes, and Users.
+-   **Authentication System:** Implemented JWT-based authentication and a login system for the admin panel.
+-   **Theme Management:** Added dynamic theme switching and storage in the backend.
 
 ## Next Steps
 -   Refine the "Games" view (currently just a placeholder with a carousel).
 -   Expand the "Emulators" data and display.
 -   Implement actual functionality for the "Download" and "Tools" sections (currently placeholders).
 -   Improve responsiveness and mobile layout.
--   Consider moving to a framework if complexity grows (currently vanilla JS).
--   Implement backend image handling for blog posts (currently using URL prompts for visual editor).
+-   Implement backend image handling for blog posts (Media manager integration).
+-   Connect the frontend SPA to the newly developed Backend API.
 
 ## Active Decisions
 -   **Vanilla Stack:** Currently using plain HTML/CSS/JS to keep dependencies low and performance high for the prototype.

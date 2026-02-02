@@ -57,6 +57,16 @@ router.post('/posts', checkAuth, async (req, res) => {
     }
 });
 
+// API: Delete Post (Protected)
+router.delete('/posts/:slug', checkAuth, async (req, res) => {
+    try {
+        await Post.destroy({ where: { slug: req.params.slug } });
+        res.json({ success: true });
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
+
 // API: Upload Image (Protected)
 router.post('/upload', checkAuth, upload.single('image'), (req, res) => {
     if (!req.file) return res.status(400).json({ error: 'No file uploaded' });

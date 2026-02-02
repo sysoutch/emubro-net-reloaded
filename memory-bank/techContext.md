@@ -1,23 +1,25 @@
 # Tech Context
 
 ## Technologies Used
--   **HTML5:** Semantic markup structure.
--   **CSS3:** Styling, Flexbox, Grid, CSS Variables, Keyframe Animations, Backdrop Filter (Glassmorphism).
--   **JavaScript (ES6+):** DOM manipulation, event handling, template literals.
--   **Google Fonts:** "Inter" font family.
+-   **Frontend:** HTML5, CSS3 (SASS), Vanilla JavaScript (ES6+).
+-   **Backend:** Node.js, Express.
+-   **Database:** SQLite, Sequelize ORM.
+-   **Authentication:** JSON Web Tokens (JWT), bcrypt.
+-   **Libraries:** `marked.js` (Markdown parsing), `turndown.js` (HTML to Markdown conversion).
+-   **Icons:** FontAwesome (via CDN).
+-   **Fonts:** Inter (via Google Fonts).
 
 ## Development Setup
--   **No Build Step:** Currently, the project requires no build tools (Webpack, Vite, etc.). It can be served directly by any static file server.
--   **Files:**
-    -   `index.html`
-    -   `style.css`
-    -   `script.js`
+-   **Node.js / npm:** Backend runtime and package management.
+-   **VS Code:** Primary editor.
+-   **Postman/Insomnia:** API testing (recommended).
 
 ## Technical Constraints
 -   **Browser Compatibility:** Requires a modern browser supporting CSS Variables, Grid, and `backdrop-filter`.
 -   **Performance:** All assets are loaded upfront. As the project grows, splitting code or assets might be necessary.
--   **State Persistence:** Currently no persistence (theme resets on reload, no user data saved).
+-   **State Persistence:** Theme state and CMS content are persisted via the SQLite database.
 
 ## Tool Usage Patterns
--   **Styling:** Pure CSS with specific organization (Variables -> Reset -> Layout -> Components -> Responsive).
--   **Logic:** Functional JS, keeping global scope pollution minimal (though variables are currently global for simplicity in prototype).
+-   **Styling:** SASS-based organization (`styles/` directory) compiled to `style.css`.
+-   **Backend:** RESTful API with structured routes and Sequelize models.
+-   **Editor:** Custom multi-tab synchronization logic for content editing.

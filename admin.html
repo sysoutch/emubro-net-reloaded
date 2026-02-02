@@ -23,6 +23,11 @@
         .login-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999; display: flex; align-items: center; justify-content: center; }
         .login-box { background: var(--card-bg); padding: 40px; border: 2px solid var(--accent); width: 100%; max-width: 400px; }
         
+        /* Generic Modal */
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 10000; align-items: center; justify-content: center; }
+        .modal.active { display: flex; }
+        .modal-content { background: var(--card-bg); border: 2px solid var(--border); padding: 20px; max-width: 90%; max-height: 90%; overflow-y: auto; width: 800px; }
+
         /* Tabs */
         .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
         .tab-btn { background: var(--card-bg); border: 2px solid var(--border); padding: 10px 20px; color: var(--text-dim); cursor: pointer; font-family: inherit; font-size: 1.2rem; }
@@ -30,6 +35,9 @@
 
         /* Toolbar active state */
         #toolbar .chip.active { border-color: var(--accent); color: var(--accent); background: rgba(0, 255, 157, 0.1); }
+
+        .post-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid var(--border); }
+        .post-item:last-child { border-bottom: none; }
         
         .admin-view { display: none; }
         .admin-view.active { display: block; }
@@ -60,6 +68,36 @@
         </div>
     </div>
 
+    <!-- Media Selector Modal -->
+    <!-- Media Selector Modal -->
+    <div id="mediaSelectorModal" class="modal">
+        <div class="modal-content">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h3>Select Media</h3>
+                <button class="chip" onclick="closeMediaSelector()">Close</button>
+            </div>
+            
+            <div class="tabs" style="margin-bottom: 20px;">
+                <button class="tab-btn active" onclick="switchMediaSelectorTab('library')">Media Library</button>
+                <button class="tab-btn" onclick="switchMediaSelectorTab('url')">From URL</button>
+            </div>
+
+            <div id="mediaSelectorLibrary" class="media-selector-tab">
+                <div id="mediaSelectorGrid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(120px, 1fr)); gap:10px; max-height: 400px; overflow-y: auto;">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <div id="mediaSelectorUrl" class="media-selector-tab" style="display:none;">
+                <div class="form-group">
+                    <label>Image URL</label>
+                    <input type="text" id="externalImageUrl" placeholder="https://...">
+                </div>
+                <button class="btn-primary" onclick="selectMedia(document.getElementById('externalImageUrl').value)">Insert from URL</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container" id="contentArea">
         <header style="margin-bottom: 40px; text-align: center;">
             <div class="logo"><span><img src="logo.png" /></span> Admin Panel</div>
@@ -72,12 +110,17 @@
                 <button class="tab-btn" data-view="themeView">Theme Editor</button>
                 <button class="tab-btn" data-view="usersView">Users</button>
                 <button class="tab-btn" data-view="pagesView">Page Editor</button>
+                <button class="tab-btn" data-view="mediaView">Media Library</button>
             </div>
 
             <!-- Posts View -->
             <div id="postsView" class="admin-view active">
-                <h2>Write New Post</h2>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <h2 id="postFormTitle">Write New Post</h2>
+                    <button id="newPostBtn" class="chip">New Post</button>
+                </div>
                 <form id="postForm">
+                    <input type="hidden" id="postId">
                     <div class="form-group">
                         <label>Title</label>
                         <input type="text" id="title" required placeholder="Enter post title...">
@@ -99,8 +142,8 @@
                         </div>
                         
                         <div id="visualView" class="editor-sub-view" style="min-height: 200px; border: 2px solid var(--border); padding: 12px; background: rgba(0,0,0,0.1); overflow-y: auto;">
-                            <div id="toolbar" style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; gap: 3px; flex-wrap: wrap; align-items: center;">
-                                <style>#toolbar .chip { padding: 4px 8px; font-size: 0.8rem; min-width: 30px; text-align: center; }</style>
+                            <div id="toolbar" class="toolbar" style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; gap: 3px; flex-wrap: wrap; align-items: center;">
+                                <style>.toolbar .chip { padding: 4px 8px; font-size: 0.8rem; min-width: 30px; text-align: center; }</style>
                                 <button type="button" class="chip" data-cmd="bold" onclick="execCmd('bold')" title="Bold">B</button>
                                 <button type="button" class="chip" data-cmd="italic" onclick="execCmd('italic')" title="Italic">I</button>
                                 <button type="button" class="chip" data-cmd="underline" onclick="execCmd('underline')" title="Underline">U</button>
@@ -119,7 +162,7 @@
                                 <button type="button" class="chip" data-cmd="justifyLeft" onclick="execCmd('justifyLeft')" title="Align Left">⬅</button>
                                 <button type="button" class="chip" data-cmd="justifyCenter" onclick="execCmd('justifyCenter')" title="Align Center">⬛</button>
                                 <button type="button" class="chip" onclick="execCmd('createLink', prompt('Enter URL:'))" title="Link">🔗</button>
-                                <button type="button" class="chip" onclick="execCmd('insertImage', prompt('Enter Image URL:'))" title="Image">🖼️</button>
+                                <button type="button" class="chip" onclick="openMediaSelector('post')" title="Image">🖼️</button>
                                 <button type="button" class="chip" onclick="insertVideo()" title="Video">📹</button>
                                 <button type="button" class="chip" onclick="insertMap()" title="Map">📍</button>
                                 <button type="button" class="chip" onclick="execCmd('insertHorizontalRule')" title="Horizontal Line">―</button>
@@ -150,6 +193,19 @@
             <div id="themeView" class="admin-view">
                 <h2>Create Custom Theme</h2>
                 <form id="themeForm">
+                    <div class="form-group">
+                        <label>Global Text Sizes</label>
+                        <div class="color-grid">
+                            <div class="form-group">
+                                <label>Base Font Size (px)</label>
+                                <input type="number" class="theme-setting" name="--base-font-size" value="16" min="10" max="24" style="width:100%; padding:10px; border:2px solid var(--border); background:rgba(0,0,0,0.2); color:white;">
+                            </div>
+                            <div class="form-group">
+                                <label>Heading 1 Size (rem)</label>
+                                <input type="number" class="theme-setting" name="--h1-size" value="3" step="0.1" style="width:100%; padding:10px; border:2px solid var(--border); background:rgba(0,0,0,0.2); color:white;">
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label>Theme Name</label>
                         <input type="text" id="themeName" required placeholder="e.g. neon-night">
@@ -208,21 +264,119 @@
                 </form>
             </div>
 
+            <!-- Media Library View -->
+            <div id="mediaView" class="admin-view">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <h2>Media Library</h2>
+                    <div style="display:flex; gap:10px;">
+                        <input type="file" id="mediaUploadInput" multiple style="display:none;">
+                        <button class="btn-primary" onclick="document.getElementById('mediaUploadInput').click()">Upload Local</button>
+                        <button class="chip" onclick="addMediaFromUrl()">Add from URL</button>
+                    </div>
+                </div>
+
+                <div id="mediaGrid" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); gap:15px; margin-bottom:30px;">
+                    Loading media...
+                </div>
+
+                <!-- Media Detail Modal/Panel (Simple Overlay) -->
+                <div id="mediaDetails" class="card" style="display:none; border-top: 2px solid var(--accent); padding:20px; margin-top:20px;">
+                    <h3>Media Details</h3>
+                    <div id="mediaPreviewLarge" style="text-align:center; margin-bottom:15px;"></div>
+                    <form id="mediaDetailsForm">
+                        <input type="hidden" id="detailsMediaId">
+                        <div class="form-group">
+                            <label>File URL</label>
+                            <input type="text" id="detailsUrl" readonly style="background:rgba(0,0,0,0.4);">
+                        </div>
+                        <div class="form-group">
+                            <label>Alt Text</label>
+                            <input type="text" id="detailsAltText" placeholder="Describe this media...">
+                        </div>
+                        <div class="form-group">
+                            <label>Filename (Rename)</label>
+                            <input type="text" id="detailsOriginalName">
+                        </div>
+                        <div style="display:flex; gap:10px;">
+                            <button type="submit" class="btn-primary">Save Changes</button>
+                            <button type="button" class="chip" onclick="copyToClipboard(document.getElementById('detailsUrl').value)">Copy URL</button>
+                            <button type="button" class="chip" style="color:red; border-color:red;" onclick="deleteMediaFromDetails()">Delete Permanently</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
             <!-- Page Editor View -->
             <div id="pagesView" class="admin-view">
-                <h2>Page Editor</h2>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                    <h2 id="pageFormTitle">Page Editor</h2>
+                    <button id="newPageBtn" class="chip">New Page</button>
+                </div>
+                
                 <div style="display:flex; gap:10px; margin-bottom:10px; align-items:center;">
                     <select id="pageSelect" style="flex:1; padding: 10px; border: 2px solid var(--border); background: rgba(0,0,0,0.2); color: var(--text-main);"><option value="">Select Page to Edit...</option></select>
-                    <button id="newPageBtn" class="chip">New Page</button>
-                    <button id="savePageBtn" class="btn-primary">Save Page</button>
-                    <button id="deletePageBtn" class="chip" style="color:red; border-color:red;">Delete</button>
                 </div>
-                <div class="form-group">
-                    <input type="text" id="pageTitle" placeholder="Page Title" style="margin-bottom: 5px;">
-                    <input type="text" id="pageSlug" placeholder="URL Slug (e.g. about-us)" style="margin-bottom: 10px;">
-                </div>
-                <div id="gjs" style="height:600px; border:2px solid var(--border); color: #000;"></div>
+
+                <form id="pageForm">
+                    <input type="hidden" id="pageId">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" id="pTitle" required placeholder="Page Title">
+                    </div>
+                    <div class="form-group">
+                        <label>URL Slug (e.g. about-us)</label>
+                        <input type="text" id="pSlug" required placeholder="url-slug">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Content</label>
+                        <div class="tabs" style="margin-bottom: 5px;">
+                            <button type="button" class="tab-btn" data-page-editor-view="pVisualView" style="font-size: 0.9rem; padding: 5px 10px;">Visual</button>
+                            <button type="button" class="tab-btn active" data-page-editor-view="pMarkdownView" style="font-size: 0.9rem; padding: 5px 10px;">Markdown</button>
+                            <button type="button" class="tab-btn" data-page-editor-view="pCodeView" style="font-size: 0.9rem; padding: 5px 10px;">Code</button>
+                        </div>
+                        
+                        <div id="pVisualView" class="page-editor-sub-view" style="min-height: 200px; border: 2px solid var(--border); padding: 12px; background: rgba(0,0,0,0.1); overflow-y: auto; display:none;">
+                            <div class="toolbar" style="margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--border); display: flex; gap: 3px; flex-wrap: wrap; align-items: center;">
+                                <button type="button" class="chip" data-pcmd="bold" onclick="execCmdPage('bold')" title="Bold">B</button>
+                                <button type="button" class="chip" data-pcmd="italic" onclick="execCmdPage('italic')" title="Italic">I</button>
+                                <button type="button" class="chip" data-pcmd="underline" onclick="execCmdPage('underline')" title="Underline">U</button>
+                                <select onchange="execCmdPage('formatBlock', this.value); this.selectedIndex=0;" class="chip" style="background: var(--card-bg); color: var(--text-main); border: 1px solid var(--border); width: auto;">
+                                    <option value="P">Text</option>
+                                    <option value="H1">H1</option>
+                                    <option value="H2">H2</option>
+                                    <option value="H3">H3</option>
+                                    <option value="P">P</option>
+                                </select>
+                                <button type="button" class="chip" onclick="openMediaSelector('page')" title="Image">🖼️</button>
+                                <button type="button" class="chip" onclick="execCmdPage('removeFormat')" title="Clear Formatting">⌫</button>
+                            </div>
+                            <div id="pageVisualEditor" contenteditable="true" style="min-height: 150px; outline: none; color: var(--text-main);"></div>
+                        </div>
+                        
+                        <div id="pMarkdownView" class="page-editor-sub-view">
+                            <textarea id="pContent" required placeholder="Write page content..."></textarea>
+                        </div>
+
+                        <div id="pCodeView" class="page-editor-sub-view" style="display:none;">
+                            <textarea id="pCodeContent" readonly style="background: #1e1e1e; color: #d4d4d4; font-family: monospace;"></textarea>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap:10px;">
+                        <button type="submit" class="btn-primary" style="flex:1;">Save Page</button>
+                        <button type="button" id="pDeleteBtn" class="chip" style="color:red; border-color:red;">Delete Page</button>
+                    </div>
+                </form>
             </div>
+        </div>
+    </div>
+
+    <!-- Generic Modal (used for Search, etc) -->
+    <div id="searchModal" class="modal">
+        <div class="modal-box" style="background: var(--card-bg); border: 2px solid var(--border); padding: 20px; width: 400px;">
+            <input type="text" id="modalInput" placeholder="Quick Find..." oninput="handleSearch(this.value)" style="width:100%; padding:10px; background:rgba(0,0,0,0.2); color:white; border:2px solid var(--border);">
+            <div id="searchResults" style="margin-top:20px;"></div>
         </div>
     </div>
 

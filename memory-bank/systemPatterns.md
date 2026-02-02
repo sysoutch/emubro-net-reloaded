@@ -1,12 +1,17 @@
 # System Patterns
 
 ## Architecture
-The application currently follows a simple **Vanilla JS Single Page Application (SPA)** architecture.
+The application follows a **Full-Stack JavaScript** architecture.
 
+-   **Frontend:** Vanilla JS Single Page Application (SPA) with Glassmorphism UI.
+-   **Backend:** Node.js/Express RESTful API.
+-   **Database:** SQLite managed via Sequelize ORM.
 -   **Structure:**
-    -   `index.html`: Contains the markup for all views (Home, Emulators, Games, etc.).
-    -   `style.css`: Contains all styles, animations, and theme definitions.
-    -   `script.js`: Handles logic, event listeners, and data rendering.
+    -   `index.html` / `admin.html`: Client-facing and administrative interfaces.
+    -   `server.js`: Entry point for the Express backend.
+    -   `models/`: Sequelize database models (User, Post, Page, Media).
+    -   `routes/`: API endpoint definitions.
+    -   `middleware/`: Authentication and security logic.
 
 ## Key Technical Decisions
 -   **CSS Variables (Custom Properties):** Used for theming to allow easy switching between Dark and Light modes without duplicate CSS rules.
@@ -26,6 +31,12 @@ The application currently follows a simple **Vanilla JS Single Page Application 
     -   Root variables define colors for `dark` theme by default.
     -   `[data-theme="light"]` selector overrides these variables.
     -   JS toggles the attribute on `document.documentElement`.
+    -   **New:** Theme state is persisted to the backend user profile.
+-   **API Integration:**
+    -   RESTful endpoints provide JSON data for dynamic rendering.
+    -   JWT tokens used for securing administrative routes.
+-   **Sync Editor:**
+    -   Bidirectional synchronization between Visual (ContentEditable), Markdown (Textarea), and Code (Textarea) views.
 
 ## Component Relationships
 -   **Navigation & Views:** The navbar buttons correspond 1:1 with `<main>` view containers.
